@@ -4,7 +4,55 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<script src="js/pgb.js"></script>
 		<script src="cordova.js"></script>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 	</head>
 	<body onload="init()">
+		
+		<!-- My Business Card -->
+		<div data-role="page" id="pageone">
+		  <div data-role="header">
+			<h1>Tourist attractions</h1>
+		  </div>
+		  <div data-role="main" class="ui-content">
+			<ul>
+			 1 <li><a href="#myPopup" data-rel="popup" data-position-to="window" <img src="img/mazury.jpeg" alt="Mazury View" style="width:200px;"> Masuria</a></li>
+			  
+			  
+			  <div data-role="popup" id="myPopup">
+      <p>This is my picture!</p> 
+      <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="img/mazury.jpeg" style="width:800px;height:400px;" alt="Mazury View">
+    </div>
+			  
+			 2 <li><a href="#myPopup2" data-rel="popup" data-position-to="window" <img src="img/pomorze.jpg" alt="Pomoria View" style="width:200px;"> Pomoria</a></li>
+			  
+			  
+			  <div data-role="popup" id="myPopup2">
+      <p>This is my second picture!</p> 
+      <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="img/pomorze.jpg" style="width:800px;height:400px;" alt="Pomoria View">
+    </div>
+			  
+			  
+			</ul>
+			<a href="#pagetwo" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" onclick="deviceInfo()">Interests</a>
+		  </div>
+		  <div data-role="footer" data-position="fixed">
+			<h1> All rights reserved. </h1>
+		  </div> 
+		</div> 
+<!--page two -->
+		<div data-role="page" id="pagetwo">
+		  <div data-role="header">
+			<h1> Business Card!</h1>
+		  </div>
+		  <div data-role="main" class="ui-content">
+			<p>Gym, Swimming, etc </p>
+		  </div>
+		  <a href="#pageone" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" onclick="deviceInfo()">Back</a>
+		  <div data-role="footer" data-position="fixed">
+			<h1> All rights reserved. </h1>
+		  </div> 
+		</div> 
 	</body>
 </html>
