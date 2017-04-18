@@ -4,12 +4,38 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<script src="js/pgb.js"></script>
 		<script src="cordova.js"></script>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
 	</head>
-	<body onload="init()">
-		<h1>Hello World!</h1>
-		<p id="dp"></p>
-		<input type="button" onclick="deviceInfo()" value="Abouth phone!">
-		<input type="button" onclick="myInfo()" value="About me">
-		<input type="button" onclick="checkConnection()" value="Network Info">
+	<body>
+		
+		<div data-role="page" id="start">
+		  <div data-role="header">
+			<h1>Main Page</h1>
+		  </div>
+		  <div data-role="content" class="main_content">
+              <input type="button" name="source" id="sources_button" value="VIEW SOURCES" />
+            </div>
+		</div> 
+        
+        <div data-role="page" id="sources">
+		  <div data-role="header">
+			<h1>Sources</h1>
+		  </div>
+		  <div data-role="content" class="sources_content">
+              
+          </div>
+		</div> 
+        
+        <div data-role="page" id="articles">
+		  <div data-role="header">
+			<h1>Sources</h1>
+		  </div>
+		  <div data-role="content" class="sources_content">
+              
+          </div>
+		</div>
 	</body>
 </html>
