@@ -10,6 +10,7 @@ $(document).ready(function () {
                 for(var i = 0; i < arrayOfSources.length; i++){
                     sourcesHtml += buildSourceHtml(arrayOfSources[i]);
                 }
+                $("#sources").empty();
                 $("#sources").append('<ul clas="sources_list">' + sourcesHtml+ '</ul>');
                 $.mobile.changePage("#sources");
             }
@@ -41,6 +42,7 @@ $(document).ready(function () {
                 for(var i = 0; i < arrayOfArticles.length; i++){
                     articlesHtml += buildArticleHtml(arrayOfArticles[i]);
                 }
+                $("#articles").empty();
                 $("#articles").append('<ul clas="articles_list">' + articlesHtml + '</ul>');
                 $.mobile.changePage("#articles");
             }
