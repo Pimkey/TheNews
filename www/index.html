@@ -6,6 +6,7 @@
     <script src="js/pgb.js"></script>
     <script src="cordova.js"></script>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/listeners.js"></script>
@@ -14,18 +15,49 @@
 </head>
 
 <body>
+    <div class="container">
 
     <div data-role="page" id="start">
         <div data-role="header">
             <h1>Main Page</h1>
         </div>
+        <div data-role="content" class="main_content_li">
+            <a href="#lists" class="ui-btn buttonlist">Your lists</a>
+        </div>
+
+<!--
         <div data-role="content" class="main_content">
-            <a href="#lists" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Your lists</a>
+           <a href="#lists" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-btn-b buttonlist">Your lists</a> 
             <input type="button" name="source" id="favourites_button" value="Favourites" />
             <input type="button" name="source" id="saved_button" value="Saved Articles" />
             <input type="button" name="source" id="sources_button" value="Sources" />
             <input type="button" name="source" id="settings_button" value="Settings" />
         </div>
+-->     <div class="container">
+        <div data-role="content" class="main_content">
+        <div class="ui-block-e">
+       <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+       <img src="img/pexels.jpeg" width="320" height="200" />
+        <input type="button" name="source" id="favourites_button" value="Favourites" />
+        </div>
+        <div class="ui-block-e">
+       <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+       <img src="img/saved.JPG" width="320" height="200" />
+        <input type="button" name="source" id="saved_button" value="Saved Articles" />
+        </div>
+        <div class="ui-block-e">
+        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+        <img src="img/source.jpg" width="320" height="200" />
+        <input type="button" name="source" id="sources_button" value="Sources" />
+        </div>
+        <div class="ui-block-e">
+       <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+       <img src="img/settings.jpeg" width="320" height="200" />
+        <input type="button" name="source" id="settings_button" value="Settings" />
+        </div>
+        </div>
+        </div>
+        
     </div>
 
     <div data-role="page" id="lists">
@@ -36,10 +68,10 @@
             <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
                 <form>
                     <div style="padding:10px 20px;">
-                        <h3>Enter list name:</h3>
+                        <h2>Enter list name:</h2>
                         <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
                         <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
-                        <button type="submit" id="cancel_new_list" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Cancel</button>
+                        <button type="submit" id="cancel_new_list" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-delete">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -67,6 +99,8 @@
 
         </div>
     </div>
+
+    </div> <!--zamyka div container -->
 </body>
 
 </html>
