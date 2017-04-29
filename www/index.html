@@ -6,6 +6,7 @@
     <script src="js/pgb.js"></script>
     <script src="cordova.js"></script>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/listeners.js"></script>
@@ -15,73 +16,109 @@
 </head>
 
 <body>
+    <div class="container">
 
-    <div data-role="page" id="start">
-        <div data-role="header">
-            <h1>Main Page</h1>
-        </div>
+        <div data-role="page" id="start">
+            <div data-role="header">
+                <h1>Main Page</h1>
+            </div>
+            <div data-role="content" class="main_content_li">
+                <a href="#lists" class="ui-btn buttonlist">Your lists</a>
+            </div>
+
+            <!--
         <div data-role="content" class="main_content">
             <input type="button" name="lists" id="lists_button" value="Your lists" />
+           <a href="#lists" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-btn-b buttonlist">Your lists</a> 
             <input type="button" name="source" id="favourites_button" value="Favourites" />
             <input type="button" name="source" id="saved_button" value="Saved Articles" />
             <input type="button" name="source" id="sources_button" value="Sources" />
             <input type="button" name="source" id="settings_button" value="Settings" />
         </div>
-    </div>
-
-    <div data-role="page" id="lists">
-        <div data-role="header">
-            <h1>Your lists</h1>
-            <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Add</a>
-
-            <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
-                <form>
-                    <div style="padding:10px 20px;">
-                        <h3>Enter list name:</h3>
-                        <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
-                        <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
-                        <button type="submit" id="cancel_new_list" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Cancel</button>
+-->
+            <div class="container">
+                <div data-role="content" class="main_content">
+                    <div class="ui-block-e">
+                        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+                        <img src="img/pexels.jpeg" width="320" height="200" />
+                        <input type="button" name="source" id="favourites_button" value="Favourites" />
                     </div>
-                </form>
+                    <div class="ui-block-e">
+                        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+                        <img src="img/saved.JPG" width="320" height="200" />
+                        <input type="button" name="source" id="saved_button" value="Saved Articles" />
+                    </div>
+                    <div class="ui-block-e">
+                        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+                        <img src="img/source.jpg" width="320" height="200" />
+                        <input type="button" name="source" id="sources_button" value="Sources" />
+                    </div>
+                    <div class="ui-block-e">
+                        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+                        <img src="img/settings.jpeg" width="320" height="200" />
+                        <input type="button" name="source" id="settings_button" value="Settings" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="lists">
+            <div data-role="header">
+                <h1>Your lists</h1>
+                <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Add</a>
+
+                <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
+                    <form>
+                        <div style="padding:10px 20px;">
+                            <h2>Enter list name:</h2>
+                            <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
+                            <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
+                            <button type="submit" id="cancel_new_list" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-delete">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div data-role="content" class="lists_content">
+                <ul data-role="listview" data-split-theme="a" data-inset="true" id="lists_listview"></ul>
             </div>
         </div>
 
-        <div data-role="content" class="lists_content">
-            <ul data-role="listview" data-split-theme="a" data-inset="true" id="lists_listview"></ul>
-        </div>
-    </div>
+        <div data-role="page" id="sources">
+            <div data-role="header">
+                <h1>Sources</h1>
+            </div>
+            <div data-role="content" class="sources_content">
+                <ul data-role="listview" data-inset="true" id="sources_listview" data-split-icon="gear"></ul>
+            </div>
 
-    <div data-role="page" id="sources">
-        <div data-role="header">
-            <h1>Sources</h1>
-        </div>
-        <div data-role="content" class="sources_content">
-            <ul data-role="listview" data-inset="true" id="sources_listview" data-split-icon="gear"></ul>
-        </div>
-
-        <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-            <div style="padding:10px 20px;">
-                <h3>Pick list</h3>
-                <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+            <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                <div style="padding:10px 20px;">
+                    <h3>Pick list</h3>
+                    <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div data-role="page" id="articles">
-        <div data-role="header">
-            <h1>Articles</h1>
-        </div>
-        <div data-role="content" class="articles_content">
-            <ul data-role="listview" data-split-icon="gear" data-inset="true" id="articles_listview"></ul>
-        </div>
+        <div data-role="page" id="articles">
+            <div data-role="header">
+                <h1>Articles</h1>
+            </div>
+            <div data-role="content" class="articles_content">
+                <ul data-role="listview" data-split-icon="gear" data-inset="true" id="articles_listview"></ul>
+            </div>
 
-        <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-            <div style="padding:10px 20px;">
-                <h3>Pick list</h3>
-                <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+            <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+                <div style="padding:10px 20px;">
+                    <h3>Pick list</h3>
+                    <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+                </div>
             </div>
         </div>
+
     </div>
+    <!--zamyka div container -->
 </body>
 
 </html>
