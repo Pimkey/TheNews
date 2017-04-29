@@ -1,51 +1,58 @@
+var params = [];
+
 document.addEventListener("DOMContentLoaded", function () {
     openDB()
 }, false);
 
 $(document).ready(function () {
     $("#sources_button").click(function () {
-        $.ajax({
-            type: 'GET',
-            url: "https://newsapi.org/v1/sources?language=en",
-            datatype: 'dataType',
-            success: function (data, status) {
-                var arrayOfSources = data.sources;
-                var sourcesHtml = "";
-                for (var i = 0; i < arrayOfSources.length; i++) {
-                    sourcesHtml += buildSourceHtml(arrayOfSources[i]);
-                }
-                $("#sources").empty();
-                $("#sources").append('<ul clas="sources_list">' + sourcesHtml + '</ul>');
-                $.mobile.changePage("#sources");
-            }
-        });
+        $.mobile.changePage("#sources");
     });
 
-    $("#sources").on('click', '.source_button', function () {
-        var id = this.id;
-        $.ajax({
-            type: 'GET',
-            url: "https://newsapi.org/v1/articles?source=" + id + "&apiKey=203603e58f0a46b3abfaf912a4512372",
-            datatype: 'dataType',
-            success: function (data, status) {
-                var arrayOfArticles = data.articles;
-                var articlesHtml = "";
-                for (var i = 0; i < arrayOfArticles.length; i++) {
-                    articlesHtml += buildArticleHtml(arrayOfArticles[i]);
-                }
-                $("#articles").empty();
-                $("#articles").append('<ul clas="articles_list">' + articlesHtml + '</ul>');
-                $.mobile.changePage("#articles");
-            }
-        });
+    $(document).on("pageshow", "#sources", function () {
+        $("#sources_listview").empty();
+        loadSources();
     });
 
+    $("#lists_button").click(function () {
+        $.mobile.changePage("#lists");
+    });
+
+    $(document).on("pageshow", "#lists", function () {
+        $("#lists_listview").empty();
+        getLists('lists_listview');
+    });
+
+
+    $("#sources").on('click', '.source_button', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
+        params.sourceId = this.id;
+        $.mobile.changePage("#articles");
+    });
+
+    $(document).on("pageshow", "#articles", function (e) {
+        $("#articles_listview").empty();
+        loadArticles(params.sourceId);
+    });
+
+    $('#sources').on('click', '#sources_listview a', function (event) {
+        $('#add_to_list_listview').attr('data-source-id', ($(this).data('sourceId')));
+    });
+
+    $("#add_to_list").on({
+        popupbeforeposition: function (e) {
+            $("#add_to_list_listview").empty();
+            getLists('add_to_list_listview');
+        }
+    });
+
+    $("#add_to_list").on('click', '#add_to_list_listview li', function () {
+        addArticleToList(this.parentNode.dataset.sourceId, this.innerText);
+    });
 
     document.getElementById("save_new_list").addEventListener("click", function (e) {
         e.preventDefault();
         var listName = document.getElementById('list_name_textbox').value
         addList(listName);
     }, false);
-
 
 });

@@ -17,7 +17,39 @@ function addList(name) {
         console.log("List " + name + " successfully saved");
     }
 
-    addToListView('lists_listview', list)
+    addToListView('lists_listview', list, 'list_item')
+    refreshListView('lists_listview');
+}
+
+function getLists(listId) {
+
+    var lists = [];
+    var transaction = db.transaction(["lists"], "readonly");
+    var store = transaction.objectStore("lists");
+    store.openCursor().onsuccess = function (e) {
+        var cursor = e.target.result;
+        if (cursor) {
+            lists.push(cursor.value);
+            addToListView(listId, cursor.value, 'list_item');
+            cursor.continue();
+        } else {
+            console.log("All lists has been read from db");
+            refreshListView(listId);
+        }
+
+    }
+}
+
+function addArticleToList(sourceId, listName) {
+    var transaction = db.transaction(["lists"], "readwrite");
+    var store = transaction.objectStore("lists");
+    var result = store.get(listName);
+    result.onsuccess = function (e) {
+        var list = e.target.result;
+        list.sources.push(sourceId);
+        store.put(list);
+    }
+
 }
 
 function openDB() {
