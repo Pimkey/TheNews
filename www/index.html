@@ -26,16 +26,6 @@
                 <a href="#lists" class="ui-btn buttonlist">Your lists</a>
             </div>
 
-            <!--
-        <div data-role="content" class="main_content">
-            <input type="button" name="lists" id="lists_button" value="Your lists" />
-           <a href="#lists" class="ui-btn ui-btn-inline ui-corner-all ui-shadow ui-btn-b buttonlist">Your lists</a> 
-            <input type="button" name="source" id="favourites_button" value="Favourites" />
-            <input type="button" name="source" id="saved_button" value="Saved Articles" />
-            <input type="button" name="source" id="sources_button" value="Sources" />
-            <input type="button" name="source" id="settings_button" value="Settings" />
-        </div>
--->
             <div class="container">
                 <div data-role="content" class="main_content">
                     <div class="ui-block-e">
@@ -85,7 +75,7 @@
             </div>
         </div>
 
-        <div data-role="page" id="sources">
+        <div data-role="page" data-list-name='all' id="sources">
             <div data-role="header">
                 <h1>Sources</h1>
             </div>
@@ -97,6 +87,10 @@
                 <div style="padding:10px 20px;">
                     <h3>Pick list</h3>
                     <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+
+                    <div data-role="popup" id="saved_popup" class="ui-content" style="max-width:350px;">
+                        <p>Saved</p>
+                    </div>
                 </div>
             </div>
         </div>

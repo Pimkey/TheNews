@@ -1,15 +1,19 @@
-function loadSources() {
+function loadAllSources() {
     $.ajax({
         type: 'GET',
         url: "https://newsapi.org/v1/sources?language=en",
         datatype: 'dataType',
         success: function (data, status) {
             var arrayOfSources = data.sources;
+            var sources = []
             var sourcesHtml = "";
             for (var i = 0; i < arrayOfSources.length; i++) {
-                sourcesHtml += buildSourceHtml(arrayOfSources[i]);
+                var source = arrayOfSources[i];
+                sources.push(source);
+                sourcesHtml += buildSourceHtml(source);
             }
             $("#sources_listview").append(sourcesHtml);
+            $("#sources_listview").attr('data-sources', JSON.stringify(sources));
             $("#sources_listview").listview("refresh");
         }
     });

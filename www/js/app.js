@@ -28,11 +28,11 @@ function buildArticleHtml(element) {
     return elementHtml;
 }
 
-function addToListView(listId, object, classes) {
+function addToListsListView(listName, object, classes) {
     if (classes != undefined && classes != null & classes.trim() != '') {
-        $("#" + listId).append('<li class="' + classes + '">' + object.name + '</li>');
+        $("#lists_listview").append('<li data-list-name="' + listName + '" class="' + classes + '">' + object.name + '</li>');
     } else {
-        $("#" + listId).append("<li>" + object.name + "</li>");
+        $("#lists_listview").append('<li data-list-name="' + listName + '">' + object.name + '< /li>');
     }
 }
 

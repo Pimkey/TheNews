@@ -17,7 +17,7 @@ function addList(name) {
         console.log("List " + name + " successfully saved");
     }
 
-    addToListView('lists_listview', list, 'list_item')
+    addToListsListView(name, list, 'list_item')
     refreshListView('lists_listview');
 }
 
@@ -29,8 +29,9 @@ function getLists(listId) {
     store.openCursor().onsuccess = function (e) {
         var cursor = e.target.result;
         if (cursor) {
-            lists.push(cursor.value);
-            addToListView(listId, cursor.value, 'list_item');
+            var list = cursor.value;
+            lists.push(list);
+            addToListsListView(cursor.value.name, cursor.value, 'list_item');
             cursor.continue();
         } else {
             console.log("All lists has been read from db");
@@ -40,16 +41,35 @@ function getLists(listId) {
     }
 }
 
-function addArticleToList(sourceId, listName) {
+function addSourceToList(element, listName) {
     var transaction = db.transaction(["lists"], "readwrite");
     var store = transaction.objectStore("lists");
     var result = store.get(listName);
     result.onsuccess = function (e) {
         var list = e.target.result;
-        list.sources.push(sourceId);
+        list.sources.push(JSON.stringify(element));
         store.put(list);
     }
 
+}
+
+function loadSourcesFromList(listName) {
+    var lists = [];
+    var transaction = db.transaction(["lists"], "readonly");
+    var store = transaction.objectStore("lists");
+    var result = store.get(listName);
+    result.onsuccess = function (e) {
+        var list = e.target.result;
+        sources = list.sources;
+        sourcesHtml = "";
+        sources.forEach(function (source) {
+            var ssource = JSON.parse(source);
+            sourcesHtml += buildSourceHtml(ssource[0]);
+        });
+        $("#sources_listview").append(sourcesHtml);
+        $("#sources_listview").attr('data-sources', JSON.stringify(sources));
+        $("#sources_listview").listview("refresh");
+    }
 }
 
 function openDB() {
