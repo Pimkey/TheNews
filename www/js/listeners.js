@@ -6,15 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $(document).ready(function () {
     $("#sources_button").click(function () {
-        $("#sources").data('list-name', 'all');
+        $("#sources").data('list-id', 'all');
+        $("#articles").data('articles', 'all');
         $.mobile.changePage("#sources");
     });
 
     $(document).on("pageshow", "#sources", function () {
         $("#sources_listview").empty();
-        var listName = $("#sources").data('list-name');
-        if (listName != 'all') {
-            loadSourcesFromList(listName);
+        var listId = $("#sources").data('list-id');
+        if (listId != 'all') {
+            loadSourcesFromList(listId);
         } else {
             loadAllSources();
         }
@@ -31,7 +32,7 @@ $(document).ready(function () {
     });
 
     $("#lists").on('click', '#lists_listview li', function () {
-        $("#sources").data('list-name', this.dataset.listName);
+        $("#sources").data('list-id', this.dataset.listId);
         $.mobile.changePage("#sources");
 
     });
@@ -39,11 +40,6 @@ $(document).ready(function () {
     $("#sources").on('click', '.source_button', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
         params.sourceId = this.id;
         $.mobile.changePage("#articles");
-    });
-
-    $(document).on("pageshow", "#articles", function (e) {
-        $("#articles_listview").empty();
-        loadArticles(params.sourceId);
     });
 
     $('#sources').on('click', '#sources_listview a', function (event) {
@@ -61,9 +57,36 @@ $(document).ready(function () {
         var sources = $('#sources_listview').data('sources');
         var me = this;
         var sourceToSave = sources.filter(function (obj) {
-            return obj.id == me.parentNode.dataset.sourceId;
+            return obj.id == me.parentElement.dataset.sourceId;
         });
-        addSourceToList(sourceToSave, this.innerText);
+        addSourceToList(sourceToSave, this.dataset.listId);
+    });
+
+    $("#articles_listview").on('click', '.save_article_button', function () {
+        var article = {};
+        article.title = this.parentElement.childNodes[1].childNodes[1].innerText;
+        article.author = this.parentElement.childNodes[1].childNodes[2].childNodes[1].innerText;
+        article.description = this.parentElement.childNodes[1].childNodes[3].innerText;
+        article.publishDate = this.parentElement.childNodes[1].childNodes[4].childNodes[2].innerText;
+        article.articleURL = this.parentElement.childNodes[1].childNodes[5].firstChild.href;
+        article.pictureURL = this.parentElement.childNodes[1].childNodes[0].src;
+        saveArticle(article);
+    });
+
+    $("#saved_button").click(function () {
+        $("#articles").data('articles', 'saved');
+        $.mobile.changePage("#articles");
+    });
+
+    $(document).on("pageshow", "#articles", function () {
+        $("#articles_listview").empty();
+        var whichArticles = $("#articles").data('articles');
+        if (whichArticles == 'all') {
+            loadArticles(params.sourceId);
+        } else {
+            loadSavedArticles();
+        }
+        $.mobile.changePage("#articles");
     });
 
     document.getElementById("save_new_list").addEventListener("click", function (e) {

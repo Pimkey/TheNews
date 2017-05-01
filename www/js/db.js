@@ -17,7 +17,7 @@ function addList(name) {
         console.log("List " + name + " successfully saved");
     }
 
-    addToListsListView(name, list, 'list_item')
+    addToListsListView('lists_listview', list, 'list_item')
     refreshListView('lists_listview');
 }
 
@@ -31,20 +31,20 @@ function getLists(listId) {
         if (cursor) {
             var list = cursor.value;
             lists.push(list);
-            addToListsListView(cursor.value.name, cursor.value, 'list_item');
+            addToListsListView(listId, cursor.value, 'list_item');
             cursor.continue();
         } else {
-            console.log("All lists has been read from db");
+            console.log("All lists have been read from db");
             refreshListView(listId);
         }
 
     }
 }
 
-function addSourceToList(element, listName) {
+function addSourceToList(element, listId) {
     var transaction = db.transaction(["lists"], "readwrite");
     var store = transaction.objectStore("lists");
-    var result = store.get(listName);
+    var result = store.get(parseInt(listId));
     result.onsuccess = function (e) {
         var list = e.target.result;
         list.sources.push(JSON.stringify(element));
@@ -53,11 +53,11 @@ function addSourceToList(element, listName) {
 
 }
 
-function loadSourcesFromList(listName) {
+function loadSourcesFromList(listId) {
     var lists = [];
     var transaction = db.transaction(["lists"], "readonly");
     var store = transaction.objectStore("lists");
-    var result = store.get(listName);
+    var result = store.get(parseInt(listId));
     result.onsuccess = function (e) {
         var list = e.target.result;
         sources = list.sources;
@@ -72,6 +72,38 @@ function loadSourcesFromList(listName) {
     }
 }
 
+function saveArticle(article) {
+    var transaction = db.transaction(["saved_articles"], "readwrite");
+    var store = transaction.objectStore("saved_articles");
+    var request = store.add(article);
+    request.onerror = function (e) {
+        console.log("Error saving article " + article.title, e.target.error.name);
+    }
+    request.onsuccess = function (e) {
+        console.log("Article " + article.title + " successfully saved");
+    }
+}
+
+function loadSavedArticles() {
+    var lists = [];
+    var transaction = db.transaction(["saved_articles"], "readonly");
+    var store = transaction.objectStore("saved_articles");
+    store.openCursor().onsuccess = function (e) {
+        var cursor = e.target.result;
+        var articlesHtml = "";
+        if (cursor) {
+            var article = cursor.value;
+            articlesHtml += buildArticleHtml(article);
+            $("#articles_listview").append(articlesHtml);
+            cursor.continue();
+        } else {
+            console.log("All saved articles have been read from db");
+            refreshListView('articles_listview');
+        }
+
+    }
+}
+
 function openDB() {
     var openRequest = window.indexedDB.open("TheNewsDB", 1);
 
@@ -80,7 +112,12 @@ function openDB() {
         var thisDb = e.target.result;
         if (!thisDb.objectStoreNames.contains("lists")) {
             thisDb.createObjectStore("lists", {
-                keyPath: "name"
+                keyPath: "id",
+                autoIncrement: true
+            });
+            thisDb.createObjectStore("saved_articles", {
+                keyPath: "id",
+                autoIncrement: true
             });
         }
     }
