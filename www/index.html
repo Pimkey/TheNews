@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/listeners.js"></script>
@@ -21,12 +21,14 @@
             <div data-role="header">
                 <h1>Main Page</h1>
             </div>
-            <div data-role="content" class="main_content_li">
-                <a href="#lists" class="ui-btn buttonlist">Your lists</a>
-            </div>
 
             <div class="container">
                 <div data-role="content" class="main_content">
+                    <div class="ui-block-e">
+                        <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
+                        <img src="img/creativeman.jpeg" width="320" height="200" />
+                        <input type="button" name="source" id="lists_button" value="Lists" />
+                    </div>
                     <div class="ui-block-e">
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
                         <img src="img/pexels.jpeg" width="320" height="200" />
@@ -64,19 +66,18 @@
                             <h2>Enter list name:</h2>
                             <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
                             <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
-                            <button type="submit" id="cancel_new_list" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-delete">Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
 
             <div data-role="content" class="lists_content">
-                <ul data-role="listview" data-inset="true" id="lists_listview"></ul>
+                <ul data-role="listview" data-split-icon="delete" data-split-theme="a" data-inset="true" id="lists_listview"></ul>
             </div>
         </div>
 
         <!-- --------------------------| SOURCES PAGE |----------------------------- -->
-        <div data-role="page" data-list-name='all' id="sources">
+        <div data-role="page" data-list-id='all' id="sources">
             <div data-role="header">
                 <h1>Sources</h1>
             </div>
@@ -87,7 +88,7 @@
             <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
                 <div style="padding:10px 20px;">
                     <h3>Pick list</h3>
-                    <ul data-role="listview" data-split-icon="gear" data-inset="true" id="add_to_list_listview"></ul>
+                    <ul data-role="listview" data-inset="true" id="add_to_list_listview"></ul>
 
                     <div data-role="popup" id="saved_popup" class="ui-content" style="max-width:350px;">
                         <p>Saved</p>

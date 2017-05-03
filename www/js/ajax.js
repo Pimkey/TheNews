@@ -10,7 +10,7 @@ function loadAllSources() {
             for (var i = 0; i < arrayOfSources.length; i++) {
                 var source = arrayOfSources[i];
                 sources.push(source);
-                sourcesHtml += buildSourceHtml(source);
+                sourcesHtml += buildSourceHtml(source, "");
             }
             $("#sources_listview").append(sourcesHtml);
             $("#sources_listview").attr('data-sources', JSON.stringify(sources));
@@ -28,7 +28,7 @@ function loadArticles(sourceId) {
             var arrayOfArticles = data.articles;
             var articlesHtml = "";
             for (var i = 0; i < arrayOfArticles.length; i++) {
-                articlesHtml += buildArticleHtml(arrayOfArticles[i]);
+                articlesHtml += buildArticleHtml(arrayOfArticles[i], 'all');
             }
             $("#articles_listview").append(articlesHtml);
             $("#articles_listview").listview('refresh');

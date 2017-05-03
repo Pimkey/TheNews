@@ -7,11 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     $("#sources_button").click(function () {
         $("#sources").data('list-id', 'all');
-        $("#articles").data('articles', 'all');
         $.mobile.changePage("#sources");
     });
 
-    $(document).on("pageshow", "#sources", function () {
+    $(document).on("pagebeforeshow", "#sources", function () {
         $("#sources_listview").empty();
         var listId = $("#sources").data('list-id');
         if (listId != 'all') {
@@ -26,15 +25,20 @@ $(document).ready(function () {
         $.mobile.changePage("#lists");
     });
 
-    $(document).on("pageshow", "#lists", function () {
+    $(document).on("pagebeforeshow", "#lists", function () {
         $("#lists_listview").empty();
         getLists('lists_listview');
     });
 
-    $("#lists").on('click', '#lists_listview li', function () {
-        $("#sources").data('list-id', this.dataset.listId);
+    $("#lists").on('click', '#lists_listview li a.list-item', function () {
+        $("#sources").data('list-id', this.parentElement.id);
         $.mobile.changePage("#sources");
 
+    });
+
+    $("#lists").on('click', '#lists_listview li a.ui-icon-delete', function () {
+        var listId = this.parentElement.id;
+        deleteList(listId);
     });
 
     $("#sources").on('click', '.source_button', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
@@ -55,22 +59,32 @@ $(document).ready(function () {
 
     $("#add_to_list").on('click', '#add_to_list_listview li', function () {
         var sources = $('#sources_listview').data('sources');
-        var me = this;
+        var sourceId = this.parentElement.dataset.sourceId;
         var sourceToSave = sources.filter(function (obj) {
-            return obj.id == me.parentElement.dataset.sourceId;
+            return obj.id == sourceId;
         });
-        addSourceToList(sourceToSave, this.dataset.listId);
+        addSourceToList(sourceToSave, this.id);
     });
 
-    $("#articles_listview").on('click', '.save_article_button', function () {
+    $(document).on("pagehide", "#articles", function () {
+        $("#articles").data('articles', 'all');
+    });
+
+    $("#articles_listview").on('click', '.save-article-button', function () {
         var article = {};
         article.title = this.parentElement.childNodes[1].childNodes[1].innerText;
         article.author = this.parentElement.childNodes[1].childNodes[2].childNodes[1].innerText;
         article.description = this.parentElement.childNodes[1].childNodes[3].innerText;
-        article.publishDate = this.parentElement.childNodes[1].childNodes[4].childNodes[2].innerText;
-        article.articleURL = this.parentElement.childNodes[1].childNodes[5].firstChild.href;
-        article.pictureURL = this.parentElement.childNodes[1].childNodes[0].src;
+        article.publishedAt = this.parentElement.childNodes[1].childNodes[4].childNodes[2].innerText;
+        article.url = this.parentElement.childNodes[1].childNodes[5].firstChild.href;
+        article.urlToImage = this.parentElement.childNodes[1].childNodes[0].src;
         saveArticle(article);
+    });
+
+    $("#articles_listview").on('click', '.delete-saved-article-button', function () {
+        var element = this.parentElement.parentElement;
+        var articleId = element.id;
+        deleteSavedArticle(articleId);
     });
 
     $("#saved_button").click(function () {
@@ -78,7 +92,13 @@ $(document).ready(function () {
         $.mobile.changePage("#articles");
     });
 
-    $(document).on("pageshow", "#articles", function () {
+    $("#sources").on('click', '.delete_source', function () {
+        var sourceId = this.parentElement.parentElement.id;
+        var listId = $('#sources').data('list-id');
+        deleteSourceFromList(listId, sourceId);
+    });
+
+    $(document).on("pagebeforeshow", "#articles", function () {
         $("#articles_listview").empty();
         var whichArticles = $("#articles").data('articles');
         if (whichArticles == 'all') {

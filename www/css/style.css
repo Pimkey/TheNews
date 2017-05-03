@@ -1,0 +1,115 @@
+* {box-sizing: border-box;}
+body {
+	margin:0;
+	padding:0;
+	font-family: monospace;
+}
+	.preload {
+	width: 100%;
+	height: 100%;
+	background: #333;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	}
+
+	.logo{
+		width: 300px;
+		height: 70px;
+		margin:150px auto 50px auto;
+		font-size: 50px;
+		text-shadow: -1px 2px 2px #000;
+		text-align: center;
+		color: azure;
+	}
+	.loader-frame{
+		width: 70px;
+		height: 70px;
+		margin: auto;
+		position: relative;
+	}
+
+	.loader1, .loader2{
+		position: absolute;
+		border: 5px solid transparent;
+		border-radius: 50%;
+	}
+	.loader1{
+		width: 70px;
+		height: 70px;
+		border-top: 5px solid azure;
+		border-bottom: 5px solid azure;
+		animation: clockwisepin 2s linear 3; 
+	}
+	.loader2{
+		width: 60px;
+		height: 60px;
+		border-left: 5px solid darkturquoise;
+		border-right: 5px solid darkturquoise; 
+		top: 5px; left: 5px;
+		animation: anticlockwisepin 2s linear 3;
+	}
+
+	@keyframes clockwisepin {
+		from {transform: rotate(0deg);}
+		to {transform: rotate(360deg);}
+	}
+	@keyframes anticlockwisepin {
+		from {transform: rotate(0deg);}
+		to {transform: rotate(-360deg);}
+	}
+	@keyframes fadeout {
+		from {opacity: 1;}
+		to {opacity: 0;}
+	}
+
+	/*.textos{
+		text-align: center;
+	}
+
+	.thumb {
+    margin-bottom: 3%;
+    float: left;
+    position: relative;
+    width: 400px; 
+    height: 300px;
+} */
+
+.buttonlist{
+	background: #0087ff;
+	height: 100px;
+    width: 100px;
+	border: 2px solid rgba(33, 68, 72, 0.59);
+	color: rgba(0, 0, 0, 0.55);
+    text-align: center;
+    font: bold 0.9em/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+	
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 66.4px;
+
+    background: -webkit-linear-gradient(top, #0087ff, #01396b);
+    background: -moz-linear-gradient(top, #0087ff, #01396b);
+    background: -o-linear-gradient(top, #0087ff, #01396b);
+    background: -ms-linear-gradient(top, #0087ff, #01396b);
+    background: linear-gradient(top, #0087ff, #01396b);
+ 
+    -webkit-border-radius: 50px;
+    -khtml-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+ 
+    -webkit-box-shadow: 0 8px 0 #01396b;
+    -moz-box-shadow: 0 8px 0 #01396b;
+    box-shadow: 0 8px 0 #01396b;
+}
+
+.ui-block-e{
+	float: left;
+	position: relative;
+	padding-left: 5px;
+	margin: 1px;
+}
