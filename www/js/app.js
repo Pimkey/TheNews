@@ -8,11 +8,14 @@ function buildSourceHtml(element, listId) {
         '<p class="souce_country">Country: <strong>' + element.country + '</strong></p>' +
         '<p class="souce_language">Language: <strong>' + element.language + '</strong></p></div>' +
         '<input type="button" value="See articles" id="' + element.id + '" class="source_button"></div>';
-    if (listId != "") {
-        elementHtml += '<input type="button" data-list-id="' + listId + '" value="Remove from list" class="delete_source"></div>' +
-            '</li>';
-    } else {
+    if (listId == 'all') {
         elementHtml += '<a href="#add_to_list" data-source-id="' + element.id + '" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a">Add to list</a>' +
+            '</a></li>';
+    } else if (listId == 'favourites') {
+        elementHtml += '<a href="#" data-list-id="favourites" class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a delete_from_favourites">Delete from favourites</a>' +
+            '</a></li>';
+    } else {
+        elementHtml += '<a href="#" data-list-id="' + element.id + '" class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a delete_source">Delete from list</a>' +
             '</a></li>';
     }
 

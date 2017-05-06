@@ -77,17 +77,37 @@
         </div>
 
         <!-- --------------------------| SOURCES PAGE |----------------------------- -->
-        <div data-role="page" data-list-id='all' id="sources">
+        <div data-role="page" data-list-id='all' data-categories='all' id="sources">
             <div data-role="header">
                 <h1>Sources</h1>
+                <a href="#categories_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Categories</a>
+
+                <div data-role="popup" id="categories_popup" data-theme="a" class="ui-corner-all">
+                    <div style="padding:10px 20px;">
+                        <h2>Choose category</h2>
+                        <ul id="categories_listview" data-role="listview" data-inset="true" data-icon="false">
+                            <li id="all" class="category"><a href="#">All</a></li>
+                            <li id="business" class="category"><a href="#">Business</a></li>
+                            <li id="entertainment" class="category"><a href="#">Entertainment</a></li>
+                            <li id="gaming" class="category"><a href="#">Gaming</a></li>
+                            <li id="general" class="category"><a href="#">General</a></li>
+                            <li id="music" class="category"><a href="#">Music</a></li>
+                            <li id="politics" class="category"><a href="#">Politics</a></li>
+                            <li id="science-and-nature" class="category"><a href="#">Science and Nature</a></li>
+                            <li id="technology" class="category"><a href="#">Technology</a></li>
+                            <li id="sport" class="category"><a href="#">Sport</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div data-role="content" class="sources_content">
-                <ul data-role="listview" data-inset="true" id="sources_listview" data-split-icon="gear"></ul>
+                <ul data-role="listview" data-inset="true" id="sources_listview"></ul>
             </div>
 
             <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
                 <div style="padding:10px 20px;">
                     <h3>Pick list</h3>
+                    <a href="#" id="add_to_favourites" data-role="button">Favourites</a>
                     <ul data-role="listview" data-inset="true" id="add_to_list_listview"></ul>
 
                     <div data-role="popup" id="saved_popup" class="ui-content" style="max-width:350px;">

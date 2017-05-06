@@ -13,10 +13,13 @@ $(document).ready(function () {
     $(document).on("pagebeforeshow", "#sources", function () {
         $("#sources_listview").empty();
         var listId = $("#sources").data('list-id');
-        if (listId != 'all') {
-            loadSourcesFromList(listId);
+        if (listId == 'all') {
+            var categoryId = $("#sources").data('categories');
+            loadAllSources(categoryId);
+        } else if (listId == 'favourites') {
+            loadFavourites();
         } else {
-            loadAllSources();
+            loadSourcesFromList(listId);
         }
         $.mobile.changePage("#sources");
     });
@@ -47,7 +50,7 @@ $(document).ready(function () {
     });
 
     $('#sources').on('click', '#sources_listview a', function (event) {
-        $('#add_to_list_listview').attr('data-source-id', $(this).data('sourceId'))
+        $('#add_to_list').attr('data-source-id', $(this).data('sourceId'))
     });
 
     $("#add_to_list").on({
@@ -57,14 +60,23 @@ $(document).ready(function () {
         }
     });
 
-    $("#add_to_list").on('click', '#add_to_list_listview li', function () {
+    $("#add_to_list").on('click', '#add_to_list_listview li, #add_to_favourites', function () {
         var sources = $('#sources_listview').data('sources');
-        var sourceId = this.parentElement.dataset.sourceId;
+        var sourceId = $("#add_to_list").data('source-id');
         var sourceToSave = sources.filter(function (obj) {
             return obj.id == sourceId;
         });
-        addSourceToList(sourceToSave, this.id);
+        if (this.id == 'add_to_favourites') {
+            addSourceToFavourites(sourceToSave);
+        } else {
+            addSourceToList(sourceToSave, this.id);
+        }
     });
+
+    $("#favourites_button").click(function () {
+        $("#sources").data('list-id', 'favourites');
+        $.mobile.changePage("#sources");
+    })
 
     $(document).on("pagehide", "#articles", function () {
         $("#articles").data('articles', 'all');
@@ -92,11 +104,30 @@ $(document).ready(function () {
         $.mobile.changePage("#articles");
     });
 
-    $("#sources").on('click', '.delete_source', function () {
-        var sourceId = this.parentElement.parentElement.id;
+    $("#sources").on('click', '.delete_source, .delete_from_favourites', function () {
+        var sourceId = this.parentElement.id;
         var listId = $('#sources').data('list-id');
-        deleteSourceFromList(listId, sourceId);
+        if (listId == 'favourites') {
+            deleteFromFavourites(sourceId);
+        } else {
+            deleteSourceFromList(listId, sourceId);
+        }
     });
+
+    $("#categories_listview").on('click', 'li.category', function () {
+        $("#sources_listview").empty();
+        var categoryId = this.id;
+        $("li.category a").each(function () {
+            $(this).removeClass("ui-icon-check ui-btn-icon-left");
+            $("categories_listview").listview('refresh');
+        })
+        $(this.firstChild).buttonMarkup({
+            icon: "check"
+        });
+        loadAllSources(categoryId);
+        $("#sources").data('categories', categoryId)
+        $("categories_listview").listview('refresh');
+    })
 
     $(document).on("pagebeforeshow", "#articles", function () {
         $("#articles_listview").empty();

@@ -1,7 +1,6 @@
 var db;
 
 function addList(name) {
-
     var list = {
         "name": name,
         "sources": []
@@ -36,8 +35,7 @@ function deleteList(listId) {
 
 }
 
-function getLists(listId) {
-
+function getLists(listViewId) {
     var lists = [];
     var transaction = db.transaction(["lists"], "readonly");
     var store = transaction.objectStore("lists");
@@ -46,13 +44,12 @@ function getLists(listId) {
         if (cursor) {
             var list = cursor.value;
             lists.push(list);
-            addToListsListView(listId, cursor.value);
+            addToListsListView(listViewId, list);
             cursor.continue();
         } else {
             console.log("All lists have been read from db");
-            refreshListView(listId);
+            refreshListView(listViewId);
         }
-
     }
 }
 
@@ -65,7 +62,6 @@ function addSourceToList(element, listId) {
         list.sources.push(JSON.stringify(element));
         store.put(list);
     }
-
 }
 
 function loadSourcesFromList(listId) {
@@ -102,6 +98,44 @@ function deleteSourceFromList(listId, sourceId) {
             }
         }
         store.put(list);
+    }
+}
+
+function addSourceToFavourites(sourceToSave) {
+    var transaction = db.transaction(["favourites"], "readwrite");
+    var store = transaction.objectStore("favourites");
+    var result = store.put(sourceToSave[0]);
+}
+
+function loadFavourites() {
+    var sourcesHtml = "";
+    var sources = [];
+    var transaction = db.transaction(["favourites"], "readonly");
+    var store = transaction.objectStore("favourites");
+    store.openCursor().onsuccess = function (e) {
+        var cursor = e.target.result;
+        if (cursor) {
+            var source = cursor.value;
+            sources.push(source);
+            sourcesHtml += buildSourceHtml(source, 'favourites');
+            cursor.continue();
+        } else {
+            console.log("All favourites have been read from db");
+            $("#sources_listview").append(sourcesHtml);
+            $("#sources_listview").attr('data-sources', JSON.stringify(sources));
+            refreshListView('sources_listview');
+        }
+
+    }
+}
+
+function deleteFromFavourites(sourceId) {
+    var transaction = db.transaction(["favourites"], "readwrite");
+    var store = transaction.objectStore("favourites");
+    var result = store.delete(sourceId);
+    result.onsuccess = function (e) {
+        removeFromListView(sourceId, 'sources_listview')
+        console.log("Source with id " + sourceId + " was deleted from favs");
     }
 }
 
@@ -161,6 +195,9 @@ function openDB() {
             thisDb.createObjectStore("saved_articles", {
                 keyPath: "id",
                 autoIncrement: true
+            });
+            thisDb.createObjectStore("favourites", {
+                keyPath: "id",
             });
         }
     }
