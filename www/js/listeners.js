@@ -44,12 +44,14 @@ $(document).ready(function () {
         deleteList(listId);
     });
 
-    $("#sources").on('click', '.source_button', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
-        params.sourceId = this.id;
+    $("#sources").on('click', '.source_url', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
+        params.sourceId = this.parentElement.id;
+        var articlesPageTitle = $(this.parentElement).find(".source_name").text();
+        $("#articles").find("h1.page_title").text(articlesPageTitle);
         $.mobile.changePage("#articles");
     });
 
-    $('#sources').on('click', '#sources_listview a', function (event) {
+    $('#sources').on('click', '#sources_listview a.add_to_list_button', function (event) {
         $('#add_to_list').attr('data-source-id', $(this).data('sourceId'))
     });
 
@@ -61,11 +63,15 @@ $(document).ready(function () {
     });
 
     $("#add_to_list").on('click', '#add_to_list_listview li, #add_to_favourites', function () {
-        var sources = $('#sources_listview').data('sources');
         var sourceId = $("#add_to_list").data('source-id');
-        var sourceToSave = sources.filter(function (obj) {
-            return obj.id == sourceId;
-        });
+        var $source = $("#" + sourceId);
+        var sourceToSave = {};
+        sourceToSave.id = sourceId;
+        sourceToSave.name = $source.find('.source_name').text();
+        sourceToSave.category = $source.find('.source_category').text();
+        sourceToSave.description = $source.find('.source_description').text();
+        sourceToSave.country = $source.find('.source_country').text();
+        sourceToSave.language = $source.find('.source_language').text();
         if (this.id == 'add_to_favourites') {
             addSourceToFavourites(sourceToSave);
         } else {
@@ -83,24 +89,26 @@ $(document).ready(function () {
     });
 
     $("#articles_listview").on('click', '.save-article-button', function () {
+        var $element = $(this.parentNode);
         var article = {};
-        article.title = this.parentElement.childNodes[1].childNodes[1].innerText;
-        article.author = this.parentElement.childNodes[1].childNodes[2].childNodes[1].innerText;
-        article.description = this.parentElement.childNodes[1].childNodes[3].innerText;
-        article.publishedAt = this.parentElement.childNodes[1].childNodes[4].childNodes[2].innerText;
-        article.url = this.parentElement.childNodes[1].childNodes[5].firstChild.href;
-        article.urlToImage = this.parentElement.childNodes[1].childNodes[0].src;
+        article.title = $element.find('.article_title').text();
+        article.author = $element.find('.article_author').text();
+        article.description = $element.find('.article_description').text();
+        article.publishedAt = $element.find('.published_at').text();
+        article.url = $element.find('a.article_url').attr('href');
+        article.urlToImage = $element.find('img.img_url').attr('src');
         saveArticle(article);
     });
 
     $("#articles_listview").on('click', '.delete-saved-article-button', function () {
-        var element = this.parentElement.parentElement;
+        var element = this.parentElement;
         var articleId = element.id;
         deleteSavedArticle(articleId);
     });
 
     $("#saved_button").click(function () {
         $("#articles").data('articles', 'saved');
+        $("#articles").find("h1.page_title").text("Saved articles");
         $.mobile.changePage("#articles");
     });
 

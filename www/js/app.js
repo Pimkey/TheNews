@@ -1,19 +1,18 @@
 function buildSourceHtml(element, listId) {
-    var elementHtml = '<li id="' + element.id + '"><a href="#">' +
-        '<div class="source_element">' +
+    var elementHtml = '<li class="source_element" id="' + element.id + '"><a class="source_url" href="#">' +
+        '<div>' +
         '<h3 class="source_name">' + element.name + '</h3>' +
-        '<h4 class="source_category">Category: <strong>' + element.category + '</strong></h4>' +
+        '<span><h4>Category: </h4><h4 class="source_category">' + element.category + '</h4></span>' +
         '<p class="source_description">' + element.description + '</p>' +
         '<div class="source_locale">' +
-        '<p class="souce_country">Country: <strong>' + element.country + '</strong></p>' +
-        '<p class="souce_language">Language: <strong>' + element.language + '</strong></p></div>' +
-        '<input type="button" value="See articles" id="' + element.id + '" class="source_button"></div>';
+        '<span><p>Country: </p><p class="source_country"><strong>' + element.country + '</strong></p></span>' +
+        '<span><p>Language: </p><p class="source_language"><strong>' + element.language + '</strong></p></span></div></div></a>';
     if (listId == 'all') {
-        elementHtml += '<a href="#add_to_list" data-source-id="' + element.id + '" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a">Add to list</a>' +
-            '</a></li>';
+        elementHtml += '<a href="#add_to_list" data-source-id="' + element.id + '" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a add_to_list_button">Add to list</a>' +
+            '</li>';
     } else if (listId == 'favourites') {
         elementHtml += '<a href="#" data-list-id="favourites" class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a delete_from_favourites">Delete from favourites</a>' +
-            '</a></li>';
+            '</li>';
     } else {
         elementHtml += '<a href="#" data-list-id="' + element.id + '" class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a delete_source">Delete from list</a>' +
             '</a></li>';
@@ -23,20 +22,18 @@ function buildSourceHtml(element, listId) {
 }
 
 function buildArticleHtml(element, whichArticles) {
-    var elementHtml = '<li id="' + element.id + '">' +
-        '<div class="article_element"> ' +
-        '<div>' +
-        '<img src="' + element.urlToImage + '" alt="' + element.title + '" style="width:200px;height:200px;">' +
+    var elementHtml = '<li class="article_element" id="' + element.id + '"><a href="' + element.url + '" class="article_url" rel="external">' +
+        '<div> ' +
+        '<img class="img_url" src="' + element.urlToImage + '" alt="' + element.title + '" style="width:200px;height:200px;">' +
         '<h3 class="article_title">' + element.title + '</h3>' +
         '<h4 class="article_author"><p>Author: </p><p><strong>' + element.author + '</strong></p></h4>' +
         '<p class="article_description">' + element.description + '</p>' +
         '<span><p class="article_published_at">Published at </p> ' +
-        '<p>' + element.publishedAt + '</p></span>' +
-        '<p><a href="' + element.url + '" rel="external">Read more</a></p></div>';
+        '<p class="published_at">' + element.publishedAt + '</p></span></div>';
     if (whichArticles == 'all') {
-        elementHtml += '<input type="button" value="Save for later" id="' + element.title + '" class="save-article-button"></div></li>'
+        elementHtml += '<a href="#" id="' + element.title + '" class="ui-btn ui-btn-icon-notext ui-icon-star ui-btn-a save-article-button">Save for later</a></a></li>'
     } else {
-        elementHtml += '<input type="button" value="Delete from saved articles" id="' + element.title + '" class="delete-saved-article-button"></div></li>'
+        elementHtml += '<a href="#" id="' + element.title + '" class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a delete-saved-article-button">Delete from saved articles</a></a></li>'
     }
     return elementHtml;
 }
