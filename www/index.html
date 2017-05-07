@@ -59,20 +59,20 @@
             <div data-role="header">
                 <h1 class="page_title">Your lists</h1>
                 <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Add</a>
-
-                <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
-                    <form>
-                        <div style="padding:10px 20px;">
-                            <h2>Enter list name:</h2>
-                            <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
-                            <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
-                        </div>
-                    </form>
-                </div>
             </div>
 
             <div data-role="content" class="lists_content">
                 <ul data-role="listview" data-split-icon="delete" data-split-theme="a" data-inset="true" id="lists_listview"></ul>
+            </div>
+
+            <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
+                <form>
+                    <div style="padding:10px 20px;">
+                        <h2>Enter list name:</h2>
+                        <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
+                        <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
 

@@ -40,7 +40,7 @@ function buildArticleHtml(element, whichArticles) {
 
 function addToListsListView(listViewId, object) {
     if (listViewId == 'lists_listview') {
-        $("#" + listViewId).append('<li id="' + object.id + '" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-btn-up-c"><a href="#" class="ui-btn list-item">' + object.name + '</a><a href="#"  class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a" title="delete"></a></li>');
+        $("#" + listViewId).append('<li id="' + object.id + '" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-btn-up-c"><a href="#" class="ui-btn list_item">' + object.name + '</a><a href="#"  class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a" title="delete"></a></li>');
     } else {
         $("#" + listViewId).append('<li id="' + object.id + '"><a href="#">' + object.name + '</a></li>');
     }

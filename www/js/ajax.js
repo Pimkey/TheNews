@@ -17,6 +17,7 @@ function loadAllSources(categoryId) {
                 sourcesHtml += buildSourceHtml(source, "all");
             }
             $("#sources_listview").append(sourcesHtml);
+            $("#sources").find("h1.page_title").text("Sources by category: " + categoryId);
             $("#sources_listview").listview("refresh");
         }
     });

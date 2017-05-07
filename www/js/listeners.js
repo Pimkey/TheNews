@@ -33,10 +33,32 @@ $(document).ready(function () {
         getLists('lists_listview');
     });
 
-    $("#lists").on('click', '#lists_listview li a.list-item', function () {
+    $("#lists").on('click', '#lists_listview li a.list_item', function () {
         $("#sources").data('list-id', this.parentElement.id);
         $.mobile.changePage("#sources");
+    });
 
+    $("#lists").on('taphold', '#lists_listview li a.list_item', function () {
+        var listId = $(this.parentElement).attr('id');
+        var listName = $(this).text();
+        $("#save_new_list").attr('data-list-id', listId);
+        $("#list_name_textbox").val(listName);
+        $("#add_list_popup").popup('open');
+    });
+
+    $("#save_new_list").click(function (e) {
+        e.preventDefault();
+        var listId = $(this).attr('data-list-id');
+        var listName = $("#list_name_textbox").val();
+        if (listId == undefined || listId == "") {
+            addList(listName);
+        } else {
+            editListName(listId, listName);
+            var liId = '#' + listId + " .list_item";
+            $(liId).text(listName);
+            refreshListView('lists_listview');
+            $(this).removeAttr('data-list-id');
+        }
     });
 
     $("#lists").on('click', '#lists_listview li a.ui-icon-delete', function () {
@@ -52,7 +74,7 @@ $(document).ready(function () {
     });
 
     $('#sources').on('click', '#sources_listview a.add_to_list_button', function (event) {
-        $('#add_to_list').attr('data-source-id', $(this).data('sourceId'))
+        $('#add_to_list').attr('data-source-id', $(this).data('source-id'))
     });
 
     $("#add_to_list").on({
@@ -63,7 +85,7 @@ $(document).ready(function () {
     });
 
     $("#add_to_list").on('click', '#add_to_list_listview li, #add_to_favourites', function () {
-        var sourceId = $("#add_to_list").data('source-id');
+        var sourceId = $("#add_to_list").attr('data-source-id');
         var $source = $("#" + sourceId);
         var sourceToSave = {};
         sourceToSave.id = sourceId;
@@ -108,7 +130,6 @@ $(document).ready(function () {
 
     $("#saved_button").click(function () {
         $("#articles").data('articles', 'saved');
-        $("#articles").find("h1.page_title").text("Saved articles");
         $.mobile.changePage("#articles");
     });
 
@@ -143,15 +164,10 @@ $(document).ready(function () {
         if (whichArticles == 'all') {
             loadArticles(params.sourceId);
         } else {
+            $("#articles").find("h1.page_title").text("Saved articles");
             loadSavedArticles();
         }
         $.mobile.changePage("#articles");
     });
-
-    document.getElementById("save_new_list").addEventListener("click", function (e) {
-        e.preventDefault();
-        var listName = document.getElementById('list_name_textbox').value
-        addList(listName);
-    }, false);
 
 });

@@ -71,6 +71,7 @@ function loadSourcesFromList(listId) {
     var result = store.get(parseInt(listId));
     result.onsuccess = function (e) {
         var list = e.target.result;
+        $("#sources").find("h1.page_title").text(list.name);
         sources = list.sources;
         sourcesHtml = "";
         sources.forEach(function (source) {
@@ -99,6 +100,17 @@ function deleteSourceFromList(listId, sourceId) {
     }
 }
 
+function editListName(listId, listName) {
+    var transaction = db.transaction(["lists"], "readwrite");
+    var store = transaction.objectStore("lists");
+    var result = store.get(parseInt(listId));
+    result.onsuccess = function (e) {
+        var list = e.target.result;
+        list.name = listName;
+        store.put(list);
+    }
+}
+
 function addSourceToFavourites(sourceToSave) {
     var transaction = db.transaction(["favourites"], "readwrite");
     var store = transaction.objectStore("favourites");
@@ -119,6 +131,7 @@ function loadFavourites() {
             cursor.continue();
         } else {
             console.log("All favourites have been read from db");
+            $("#sources").find("h1.page_title").text("Favourites");
             $("#sources_listview").append(sourcesHtml);
             refreshListView('sources_listview');
         }
