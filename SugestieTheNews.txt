@@ -1,0 +1,20 @@
+- kręcące się kółeczko albo Wait albo cokolwiek w momencie kiedy łądują się source albo artykuły i jest pusty ekran i jest MindFuck (dla zapytań ajaxowych)
+- ładniejszy, większy, wyraźniejszy header
+- poprawić przycisk na headerze bo brzydko wystaje. I w ogóle jest brzydki, trzeba go poprawić
+- Ten guzik categories w sourcach jest tak duży, że zakrywa tytuł. 
+	Albo trzeba przesunać tytuł w lewo alo zmienić guzik, np wykasować tekst i dać tylko jakąś dającą do zrozumienia co to ikonkę. 
+	Niestety nie znalazłam odpowiedniej w defaultowych z JQuery Mobile.
+- Zła ikona w saved articles. Zamiast X (delete) jest gear (czyli takie kółko)
+- Może footer z napisem by Piotrek i Ada albo coś takiego byłby ok?
+- z rzeczy, które powinny się odznaczać/zamykać a się nie robią:
+	* chcesz dodać artykuł do saved articles, klikasz gwiazdkę i zostaje kliknięta. Mi się wydaje, że powinna się odznaczyć. 
+	* nie zamyka się popup po dodaniu/edycji listy w lists
+	* nie zamyka się popup po dodaniu sourca do listy
+	* nie zamyka się popup z wyborem kategorii w sourcach
+- Przy powyższych popupach/zaznaczeniach powinien się pojawić i zniknąć jakiś komunikat że saved/deleted etc. Tak jakby taki toast na Androidzie albo coś.
+- trochę się zniekształcają zdjęcia na telefonie w articles.
+	Mi się wydaje ze mogłoby to wyglądać tak:  Nagłowek na tłusto, potem pod nim małymi literami autor, pod tym foto, pod tym opis i niżej published at. To wszystko wyśrodkowane?
+- Sourcy powinny mieć więcej życia, moze tło w innym kolorze pod nazwą sourca? Moze jakieś wyśrodkowanie, wytłuszczenie, no nie wiem.
+- Fajnie byłoby zmienić kolor tła aplikacji. 
+- Trzeba dodać motywy kolorystyczne do ustawień.
+- Jak odpaliłam to na telefonie przez phonegap to mi nie uruchomił się splash screen. 
