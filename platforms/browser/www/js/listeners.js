@@ -7,17 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
     $("#sources_button").click(function () {
         $("#sources").data('list-id', 'all');
-        $("#articles").data('articles', 'all');
         $.mobile.changePage("#sources");
     });
 
     $(document).on("pagebeforeshow", "#sources", function () {
         $("#sources_listview").empty();
         var listId = $("#sources").data('list-id');
-        if (listId != 'all') {
-            loadSourcesFromList(listId);
+        if (listId == 'all') {
+            var categoryId = $("#sources").data('categories');
+            loadAllSources(categoryId);
+        } else if (listId == 'favourites') {
+            loadFavourites();
         } else {
-            loadAllSources();
+            loadSourcesFromList(listId);
         }
         $.mobile.changePage("#sources");
     });
@@ -31,19 +33,48 @@ $(document).ready(function () {
         getLists('lists_listview');
     });
 
-    $("#lists").on('click', '#lists_listview li', function () {
-        $("#sources").data('list-id', this.dataset.listId);
+    $("#lists").on('click', '#lists_listview li a.list_item', function () {
+        $("#sources").data('list-id', this.parentElement.id);
         $.mobile.changePage("#sources");
-
     });
 
-    $("#sources").on('click', '.source_button', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
-        params.sourceId = this.id;
+    $("#lists").on('taphold', '#lists_listview li a.list_item', function () {
+        var listId = $(this.parentElement).attr('id');
+        var listName = $(this).text();
+        $("#save_new_list").attr('data-list-id', listId);
+        $("#list_name_textbox").val(listName);
+        $("#add_list_popup").popup('open');
+    });
+
+    $("#save_new_list").click(function (e) {
+        e.preventDefault();
+        var listId = $(this).attr('data-list-id');
+        var listName = $("#list_name_textbox").val();
+        if (listId == undefined || listId == "") {
+            addList(listName);
+        } else {
+            editListName(listId, listName);
+            var liId = '#' + listId + " .list_item";
+            $(liId).text(listName);
+            refreshListView('lists_listview');
+            $(this).removeAttr('data-list-id');
+        }
+    });
+
+    $("#lists").on('click', '#lists_listview li a.ui-icon-delete', function () {
+        var listId = this.parentElement.id;
+        deleteList(listId);
+    });
+
+    $("#sources").on('click', '.source_url', function () { // do dynamicznego contentu (gdy guzik się generuje przy ładowaniu strony)
+        params.sourceId = this.parentElement.id;
+        var articlesPageTitle = $(this.parentElement).find(".source_name").text();
+        $("#articles").find("h1.page_title").text(articlesPageTitle);
         $.mobile.changePage("#articles");
     });
 
-    $('#sources').on('click', '#sources_listview a', function (event) {
-        $('#add_to_list_listview').attr('data-source-id', $(this).data('sourceId'))
+    $('#sources').on('click', '#sources_listview a.add_to_list_button', function (event) {
+        $('#add_to_list').attr('data-source-id', $(this).data('source-id'))
     });
 
     $("#add_to_list").on({
@@ -53,24 +84,48 @@ $(document).ready(function () {
         }
     });
 
-    $("#add_to_list").on('click', '#add_to_list_listview li', function () {
-        var sources = $('#sources_listview').data('sources');
-        var me = this;
-        var sourceToSave = sources.filter(function (obj) {
-            return obj.id == me.parentElement.dataset.sourceId;
-        });
-        addSourceToList(sourceToSave, this.dataset.listId);
+    $("#add_to_list").on('click', '#add_to_list_listview li, #add_to_favourites', function () {
+        var sourceId = $("#add_to_list").attr('data-source-id');
+        var $source = $("#" + sourceId);
+        var sourceToSave = {};
+        sourceToSave.id = sourceId;
+        sourceToSave.name = $source.find('.source_name').text();
+        sourceToSave.category = $source.find('.source_category').text();
+        sourceToSave.description = $source.find('.source_description').text();
+        sourceToSave.country = $source.find('.source_country').text();
+        sourceToSave.language = $source.find('.source_language').text();
+        if (this.id == 'add_to_favourites') {
+            addSourceToFavourites(sourceToSave);
+        } else {
+            addSourceToList(sourceToSave, this.id);
+        }
     });
 
-    $("#articles_listview").on('click', '.save_article_button', function () {
+    $("#favourites_button").click(function () {
+        $("#sources").data('list-id', 'favourites');
+        $.mobile.changePage("#sources");
+    })
+
+    $(document).on("pagehide", "#articles", function () {
+        $("#articles").data('articles', 'all');
+    });
+
+    $("#articles_listview").on('click', '.save-article-button', function () {
+        var $element = $(this.parentNode);
         var article = {};
-        article.title = this.parentElement.childNodes[1].childNodes[1].innerText;
-        article.author = this.parentElement.childNodes[1].childNodes[2].childNodes[1].innerText;
-        article.description = this.parentElement.childNodes[1].childNodes[3].innerText;
-        article.publishDate = this.parentElement.childNodes[1].childNodes[4].childNodes[2].innerText;
-        article.url = this.parentElement.childNodes[1].childNodes[5].firstChild.href;
-        article.urlToImage = this.parentElement.childNodes[1].childNodes[0].src;
+        article.title = $element.find('.article_title').text();
+        article.author = $element.find('.article_author').text();
+        article.description = $element.find('.article_description').text();
+        article.publishedAt = $element.find('.published_at').text();
+        article.url = $element.find('a.article_url').attr('href');
+        article.urlToImage = $element.find('img.img_url').attr('src');
         saveArticle(article);
+    });
+
+    $("#articles_listview").on('click', '.delete-saved-article-button', function () {
+        var element = this.parentElement;
+        var articleId = element.id;
+        deleteSavedArticle(articleId);
     });
 
     $("#saved_button").click(function () {
@@ -78,11 +133,30 @@ $(document).ready(function () {
         $.mobile.changePage("#articles");
     });
 
-    $("#sources").on('click', '.delete_source', function () {
-        var sourceId = this.parentElement.parentElement.id;
+    $("#sources").on('click', '.delete_source, .delete_from_favourites', function () {
+        var sourceId = this.parentElement.id;
         var listId = $('#sources').data('list-id');
-        deleteSourceFromList(listId, sourceId);
+        if (listId == 'favourites') {
+            deleteFromFavourites(sourceId);
+        } else {
+            deleteSourceFromList(listId, sourceId);
+        }
     });
+
+    $("#categories_listview").on('click', 'li.category', function () {
+        $("#sources_listview").empty();
+        var categoryId = this.id;
+        $("li.category a").each(function () {
+            $(this).removeClass("ui-icon-check ui-btn-icon-left");
+            $("categories_listview").listview('refresh');
+        })
+        $(this.firstChild).buttonMarkup({
+            icon: "check"
+        });
+        loadAllSources(categoryId);
+        $("#sources").data('categories', categoryId)
+        $("categories_listview").listview('refresh');
+    })
 
     $(document).on("pagebeforeshow", "#articles", function () {
         $("#articles_listview").empty();
@@ -90,15 +164,10 @@ $(document).ready(function () {
         if (whichArticles == 'all') {
             loadArticles(params.sourceId);
         } else {
+            $("#articles").find("h1.page_title").text("Saved articles");
             loadSavedArticles();
         }
         $.mobile.changePage("#articles");
     });
-
-    document.getElementById("save_new_list").addEventListener("click", function (e) {
-        e.preventDefault();
-        var listName = document.getElementById('list_name_textbox').value
-        addList(listName);
-    }, false);
 
 });

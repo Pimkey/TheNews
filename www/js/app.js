@@ -50,6 +50,16 @@ function refreshListView(listViewId) {
     $("#" + listViewId).listview("refresh");
 }
 
+function refreshPage(pageId) {
+    $(":mobile-pagecontainer").pagecontainer("change",
+        "#" + pageId, {
+            allowSamePageTransition: true,
+            transition: 'none',
+            showLoadMsg: false,
+        }
+    );
+}
+
 function removeFromListView(sourceId, listViewId) {
     $("#" + sourceId).remove();
     refreshListView(listViewId);

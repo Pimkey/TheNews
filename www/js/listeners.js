@@ -5,9 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
 }, false);
 
 $(document).ready(function () {
-    $("#sources_button").click(function () {
+    $("#sources_button, #sources_hamburger").click(function () {
         $("#sources").data('list-id', 'all');
-        $.mobile.changePage("#sources");
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+        if (activePage[0].id == "sources") {
+            refreshPage('sources');
+        } else {
+            $.mobile.pageContainer.pagecontainer("change", "#sources");
+        }
     });
 
     $(document).on("pagebeforeshow", "#sources", function () {
@@ -15,17 +20,19 @@ $(document).ready(function () {
         var listId = $("#sources").data('list-id');
         if (listId == 'all') {
             var categoryId = $("#sources").data('categories');
+            $("#categories_button").show();
             loadAllSources(categoryId);
         } else if (listId == 'favourites') {
+            $("#categories_button").hide();
             loadFavourites();
         } else {
+            $("#categories_button").hide();
             loadSourcesFromList(listId);
         }
-        $.mobile.changePage("#sources");
     });
 
-    $("#lists_button").click(function () {
-        $.mobile.changePage("#lists");
+    $("#lists_button, #lists_hamburger").click(function () {
+        $.mobile.pageContainer.pagecontainer("change", "#lists");
     });
 
     $(document).on("pagebeforeshow", "#lists", function () {
@@ -35,7 +42,7 @@ $(document).ready(function () {
 
     $("#lists").on('click', '#lists_listview li a.list_item', function () {
         $("#sources").data('list-id', this.parentElement.id);
-        $.mobile.changePage("#sources");
+        $.mobile.pageContainer.pagecontainer("change", "#sources");
     });
 
     $("#lists").on('taphold', '#lists_listview li a.list_item', function () {
@@ -70,7 +77,7 @@ $(document).ready(function () {
         params.sourceId = this.parentElement.id;
         var articlesPageTitle = $(this.parentElement).find(".source_name").text();
         $("#articles").find("h1.page_title").text(articlesPageTitle);
-        $.mobile.changePage("#articles");
+        $.mobile.pageContainer.pagecontainer("change", "#articles");
     });
 
     $('#sources').on('click', '#sources_listview a.add_to_list_button', function (event) {
@@ -101,9 +108,14 @@ $(document).ready(function () {
         }
     });
 
-    $("#favourites_button").click(function () {
+    $("#favourites_button, #favourites_hamburger").click(function () {
         $("#sources").data('list-id', 'favourites');
-        $.mobile.changePage("#sources");
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+        if (activePage[0].id == "sources") {
+            refreshPage('sources');
+        } else {
+            $.mobile.pageContainer.pagecontainer("change", "#sources");
+        }
     })
 
     $(document).on("pagehide", "#articles", function () {
@@ -128,9 +140,14 @@ $(document).ready(function () {
         deleteSavedArticle(articleId);
     });
 
-    $("#saved_button").click(function () {
+    $("#saved_articles_button, #saved_articles_hamburger").click(function () {
         $("#articles").data('articles', 'saved');
-        $.mobile.changePage("#articles");
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+        if (activePage[0].id == "articles") {
+            refreshPage('articles');
+        } else {
+            $.mobile.pageContainer.pagecontainer("change", "#articles");
+        }
     });
 
     $("#sources").on('click', '.delete_source, .delete_from_favourites', function () {
@@ -167,7 +184,7 @@ $(document).ready(function () {
             $("#articles").find("h1.page_title").text("Saved articles");
             loadSavedArticles();
         }
-        $.mobile.changePage("#articles");
+        $.mobile.pageContainer.pagecontainer("change", "#articles");
     });
 
 });

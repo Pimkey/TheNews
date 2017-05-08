@@ -1,7 +1,11 @@
-function loadAllSources() {
+function loadAllSources(categoryId) {
+    var basicUrl = "https://newsapi.org/v1/sources";
+    if (categoryId != "all") {
+        basicUrl += "?category=" + categoryId;
+    }
     $.ajax({
         type: 'GET',
-        url: "https://newsapi.org/v1/sources?language=en",
+        url: basicUrl,
         datatype: 'dataType',
         success: function (data, status) {
             var arrayOfSources = data.sources;
@@ -10,10 +14,10 @@ function loadAllSources() {
             for (var i = 0; i < arrayOfSources.length; i++) {
                 var source = arrayOfSources[i];
                 sources.push(source);
-                sourcesHtml += buildSourceHtml(source, "");
+                sourcesHtml += buildSourceHtml(source, "all");
             }
             $("#sources_listview").append(sourcesHtml);
-            $("#sources_listview").attr('data-sources', JSON.stringify(sources));
+            $("#sources").find("h1.page_title").text("Sources by category: " + categoryId);
             $("#sources_listview").listview("refresh");
         }
     });
@@ -28,7 +32,7 @@ function loadArticles(sourceId) {
             var arrayOfArticles = data.articles;
             var articlesHtml = "";
             for (var i = 0; i < arrayOfArticles.length; i++) {
-                articlesHtml += buildArticleHtml(arrayOfArticles[i]);
+                articlesHtml += buildArticleHtml(arrayOfArticles[i], 'all');
             }
             $("#articles_listview").append(articlesHtml);
             $("#articles_listview").listview('refresh');

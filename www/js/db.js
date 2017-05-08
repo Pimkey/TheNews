@@ -192,7 +192,7 @@ function deleteSavedArticle(articleId) {
 }
 
 function openDB() {
-    var openRequest = window.indexedDB.open("TheNewsDB", 1);
+    var openRequest = window.indexedDB.open("TheNewsDB", 2);
 
     openRequest.onupgradeneeded = function (e) {
         console.log("db object was updated");
