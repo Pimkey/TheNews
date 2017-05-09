@@ -1,4 +1,5 @@
 function loadAllSources(categoryId) {
+    checkConnection();
     var basicUrl = "https://newsapi.org/v1/sources";
     if (categoryId != "all") {
         basicUrl += "?category=" + categoryId;
@@ -24,6 +25,7 @@ function loadAllSources(categoryId) {
 }
 
 function loadArticles(sourceId) {
+    checkConnection();
     $.ajax({
         type: 'GET',
         url: "https://newsapi.org/v1/articles?source=" + sourceId + "&apiKey=203603e58f0a46b3abfaf912a4512372",

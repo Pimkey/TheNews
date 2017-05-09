@@ -2,11 +2,11 @@ function buildSourceHtml(element, listId) {
     var elementHtml = '<li class="source_element" id="' + element.id + '"><a class="source_url" href="#">' +
         '<div>' +
         '<h3 class="source_name">' + element.name + '</h3>' +
-        '<span><h4>Category: </h4><h4 class="source_category">' + element.category + '</h4></span>' +
+        '<span><h4 class="source_category">Category: </h4><h4 class="source_category">' + element.category + '</h4></span>' +
         '<p class="source_description">' + element.description + '</p>' +
         '<div class="source_locale">' +
-        '<span><p>Country: </p><p class="source_country"><strong>' + element.country + '</strong></p></span>' +
-        '<span><p>Language: </p><p class="source_language"><strong>' + element.language + '</strong></p></span></div></div></a>';
+        '<span><p class="source_country">Country: </p><p class="source_country"><strong>' + element.country + '</strong></p></span>' +
+        '<span><p class="source_language">Language: </p><p class="source_language"><strong>' + element.language + '</strong></p></span></div></div></a>';
     if (listId == 'all') {
         elementHtml += '<a href="#add_to_list" data-source-id="' + element.id + '" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-btn-icon-notext ui-icon-gear ui-btn-a add_to_list_button">Add to list</a>' +
             '</li>';
@@ -50,7 +50,32 @@ function refreshListView(listViewId) {
     $("#" + listViewId).listview("refresh");
 }
 
+function refreshPage(pageId) {
+    $(":mobile-pagecontainer").pagecontainer("change",
+        "#" + pageId, {
+            allowSamePageTransition: true,
+            transition: 'none',
+            showLoadMsg: false,
+        }
+    );
+}
+
 function removeFromListView(sourceId, listViewId) {
     $("#" + sourceId).remove();
     refreshListView(listViewId);
+}
+
+function checkConnection() {
+    /*    var networkState = navigator.connection.type;
+        if (networkState == Connection.NONE) {
+            navigator.notification.alert("Please, turn on WiFi or data transfer to be able to download sources and articles ", "No network connection");
+        }*/
+}
+
+function validateListName(listName) {
+    if (listName == undefined || listName == null || listName.trim() == "") {
+        $("#list_validation_text").removeAttr("hidden");
+        return false;
+    }
+    return true;
 }

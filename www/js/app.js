@@ -64,3 +64,18 @@ function removeFromListView(sourceId, listViewId) {
     $("#" + sourceId).remove();
     refreshListView(listViewId);
 }
+
+function checkConnection() {
+    /*    var networkState = navigator.connection.type;
+        if (networkState == Connection.NONE) {
+            navigator.notification.alert("Please, turn on WiFi or data transfer to be able to download sources and articles ", "No network connection");
+        }*/
+}
+
+function validateListName(listName) {
+    if (listName == undefined || listName == null || listName.trim() == "") {
+        $("#list_validation_text").removeAttr("hidden");
+        return false;
+    }
+    return true;
+}
