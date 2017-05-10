@@ -191,6 +191,46 @@ function deleteSavedArticle(articleId) {
     }
 }
 
+function saveSettings(settings) {
+    var transaction = db.transaction(["settings"], "readwrite");
+    var store = transaction.objectStore("settings");
+    var request = store.get(1);
+    request.onsuccess = function (e) {
+        var settingsFromDB = e.target.result;
+        if (settingsFromDB != undefined) {
+            settings.id = settingsFromDB.id;
+        }
+        store.put(settings);
+    }
+}
+
+function loadSettings() {
+    var transaction = db.transaction(["settings"], "readwrite");
+    var store = transaction.objectStore("settings");
+    var request = store.get(1);
+    request.onsuccess = function (e) {
+        var settings = e.target.result;
+        if (settings == undefined) {
+            var settings = {};
+            settings.language = "en";
+            settings.theme = "blue";
+        }
+        $("#select_language").val(settings.language).selectmenu('refresh');
+        $("#" + settings.theme + "_theme").attr("checked", true).checkboxradio("refresh");
+    }
+}
+
+function loadAllSources(categoryId) {
+    var transaction = db.transaction(["settings"], "readwrite");
+    var store = transaction.objectStore("settings");
+    var request = store.get(1);
+    request.onsuccess = function (e) {
+        var settings = e.target.result;
+        var language = (settings == undefined) ? "en" : settings.language;
+        loadAllSourcesAjax(language, categoryId)
+    }
+}
+
 function openDB() {
     var openRequest = window.indexedDB.open("TheNewsDB", 2);
 
@@ -208,6 +248,9 @@ function openDB() {
             });
             thisDb.createObjectStore("favourites", {
                 keyPath: "id",
+            });
+            thisDb.createObjectStore("settings", {
+                keyPath: "id"
             });
         }
     }

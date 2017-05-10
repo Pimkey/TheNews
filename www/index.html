@@ -19,8 +19,8 @@
     <div class="container">
 
         <!-- --------------------------| MAIN PAGE |----------------------------- -->
-        <div data-role="page" id="start"> 
-            <div id="navmenu" data-role="header" >
+        <div data-role="page" id="start">
+            <div id="navmenu" data-role="header">
                 <h1>Main Page</h1>
             </div>
 
@@ -55,15 +55,15 @@
                 </div>
             </div>
 
-           <!-- <div data-role="footer">
+            <!-- <div data-role="footer">
                 <h1>App created by A.Ślizowska & P.Gołpyś</h1>
             </div> -->
 
 
             <div id="footerwrap" data-role="footer">
-            
+
                 <h4>App created by A.Ślizowska & P.Gołpyś - Copyright 2017</h4>
-        </div>
+            </div>
         </div>
 
         <!-- --------------------------| LISTS PAGE |----------------------------- -->
@@ -140,62 +140,54 @@
             </div>
         </div>
 
-    </div>
-
-
-
-
-<!-- --------------------------| SETTINGS PAGE |----------------------------- -->
+        <!-- --------------------------| SETTINGS PAGE |----------------------------- -->
         <div data-role="page" id="settings">
-            <div data-role="settings" >
+            <div data-role="header">
                 <h1 class="settings">Your settings</h1>
-                <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Please select your choices</a>
             </div>
 
             <div data-role="content" class="settings_content">
-                <ul data-role="settview" data-split-icon="delete" data-split-theme="a" data-inset="true" id="settings_settview"></ul>
+                <fieldset data-role="controlgroup">
+                    <legend>Choose colour theme</legend>
+                    <input type="radio" name="red_theme" id="red_theme" value="red" class="theme_radio">
+                    <label for="red_theme">Red</label>
+                    <input type="radio" name="blue_theme" id="blue_theme" value="blue" class="theme_radio">
+                    <label for="blue_theme">Blue</label>
+                    <input type="radio" name="green_theme" id="green_theme" value="green" class="theme_radio">
+                    <label for="green_theme">Green</label>
+                </fieldset>
+                <label for="select-choice-mini" class="select">Choose language of sources</label>
+                <select name="select-choice-mini" id="select_language" data-mini="true" data-inline="true">
+                    <option value="en">English</option>
+                    <option value="de">German</option>
+                    <option value="fr">French</option>
+                </select>
+                <button type="submit" id="save_settings" value="save_settings" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
             </div>
 
-            <div data-role="popup" id="add_setting_popup" theme-value="b" data-theme="a" class="ui-corner-all">
-                <form>
-                    <div style="padding:10px 20px;">
-                        <h2>Enter list name:</h2>
-                        <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
-                        <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
-                    </div>
-                </form>
-            </div>
         </div>
 
-
-
-
-
-
-
-
-
-    <!-- --------------------------| HAMBURGER MENU |----------------------------- -->
-    <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()" style="position: fixed; left: 10px; top: 5px" />
-    <div id="sidebar" style="position: fixed; display: inline-block; top: 35px; height: 100%; width: 200px; left: -200px; background-color: black; transition: all 0.5s ease-in-out;">
-        <ul>
-            <li id="lists_hamburger">
-                <a href="#">Lists</a>
-            </li>
-            <li id="favourites_hamburger">
-                <a href="#">Favourites</a>
-            </li>
-            <li id="saved_articles_hamburger">
-                <a href="#">Saved Articles </a>
-            </li>
-            <li id="sources_hamburger">
-                <a href="#">Sources</a>
-            </li>
-            <li id="settings_hamburger">
-                <a href="#">Settings</a>
-            </li>
-        </ul>
-    </div>
+        <!-- --------------------------| HAMBURGER MENU |----------------------------- -->
+        <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()" style="position: fixed; left: 10px; top: 5px" />
+        <div id="sidebar" style="position: fixed; display: inline-block; top: 35px; height: 100%; width: 200px; left: -200px; background-color: black; transition: all 0.5s ease-in-out;">
+            <ul>
+                <li id="lists_hamburger">
+                    <a href="#">Lists</a>
+                </li>
+                <li id="favourites_hamburger">
+                    <a href="#">Favourites</a>
+                </li>
+                <li id="saved_articles_hamburger">
+                    <a href="#">Saved Articles </a>
+                </li>
+                <li id="sources_hamburger">
+                    <a href="#">Sources</a>
+                </li>
+                <li id="settings_hamburger">
+                    <a href="#">Settings</a>
+                </li>
+            </ul>
+        </div>
 
 </body>
 <script>

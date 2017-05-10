@@ -1,9 +1,13 @@
-function loadAllSources(categoryId) {
+function loadAllSourcesAjax(language, categoryId) {
     checkConnection();
-    var basicUrl = "https://newsapi.org/v1/sources";
+    var basicUrl = "https://newsapi.org/v1/sources?";
     if (categoryId != "all") {
-        basicUrl += "?category=" + categoryId;
+        basicUrl += "category=" + categoryId + "&";
     }
+    if (language == "en" || language == "de" || language == "fr") {
+        basicUrl += "language=" + language;
+    }
+
     $.ajax({
         type: 'GET',
         url: basicUrl,

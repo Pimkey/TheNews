@@ -66,10 +66,14 @@ function removeFromListView(sourceId, listViewId) {
 }
 
 function checkConnection() {
-    /*    var networkState = navigator.connection.type;
+    try {
+        var networkState = navigator.connection.type;
         if (networkState == Connection.NONE) {
             navigator.notification.alert("Please, turn on WiFi or data transfer to be able to download sources and articles ", "No network connection");
-        }*/
+        }
+    } catch (err) {
+        console.log("Can't check connection");
+    }
 }
 
 function validateListName(listName) {

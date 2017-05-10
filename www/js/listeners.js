@@ -193,7 +193,22 @@ $(document).ready(function () {
             $("#articles").find("h1.page_title").text("Saved articles");
             loadSavedArticles();
         }
-        $.mobile.pageContainer.pagecontainer("change", "#articles");
+    });
+
+    $("#settings_button, #settings_hamburger").click(function () {
+        $.mobile.pageContainer.pagecontainer("change", "#settings");
+    })
+
+    $(document).on("pagebeforeshow", "#settings", function () {
+        loadSettings();
+    });
+
+    $("#save_settings").click(function () {
+        var settings = {};
+        settings.id = 1;
+        settings.language = $("#select_language").val();
+        settings.theme = $("input[class=theme_radio]:checked").val();
+        saveSettings(settings);
     });
 
 });
