@@ -19,8 +19,8 @@
     <div class="container">
 
         <!-- --------------------------| MAIN PAGE |----------------------------- -->
-        <div data-role="page" id="start">
-            <div data-role="header">
+        <div data-role="page" id="start"> 
+            <div id="navmenu" data-role="header" >
                 <h1>Main Page</h1>
             </div>
 
@@ -55,9 +55,15 @@
                 </div>
             </div>
 
-            <div data-role="footer">
+           <!-- <div data-role="footer">
                 <h1>App created by A.Ślizowska & P.Gołpyś</h1>
-            </div>
+            </div> -->
+
+
+            <div id="footerwrap" data-role="footer">
+            
+                <h4>App created by A.Ślizowska & P.Gołpyś - Copyright 2017</h4>
+        </div>
         </div>
 
         <!-- --------------------------| LISTS PAGE |----------------------------- -->
@@ -135,6 +141,39 @@
         </div>
 
     </div>
+
+
+
+
+<!-- --------------------------| SETTINGS PAGE |----------------------------- -->
+        <div data-role="page" id="settings">
+            <div data-role="settings" >
+                <h1 class="settings">Your settings</h1>
+                <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Please select your choices</a>
+            </div>
+
+            <div data-role="content" class="settings_content">
+                <ul data-role="settview" data-split-icon="delete" data-split-theme="a" data-inset="true" id="settings_settview"></ul>
+            </div>
+
+            <div data-role="popup" id="add_setting_popup" theme-value="b" data-theme="a" class="ui-corner-all">
+                <form>
+                    <div style="padding:10px 20px;">
+                        <h2>Enter list name:</h2>
+                        <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
+                        <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
 
     <!-- --------------------------| HAMBURGER MENU |----------------------------- -->
     <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()" style="position: fixed; left: 10px; top: 5px" />
