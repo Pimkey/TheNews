@@ -4,6 +4,8 @@ body {
 	padding:0;
 	font-family: monospace;
 }
+
+/*------SPLASH SCREEN ------*/
 	.preload {
 	width: 100%;
 	height: 100%;
@@ -64,18 +66,7 @@ body {
 		to {opacity: 0;}
 	}
 
-	/*.textos{
-		text-align: center;
-	}
-
-	.thumb {
-    margin-bottom: 3%;
-    float: left;
-    position: relative;
-    width: 400px; 
-    height: 300px;
-} */
-
+/*Nie wiem do czego to juz jest na razie wykomentuje, chyba zapomnialem wykasowac wczesniej
 .buttonlist{
 	background: #0087ff;
 	height: 100px;
@@ -107,12 +98,7 @@ body {
     box-shadow: 0 8px 0 #01396b;
 }
 
-.ui-block-e{
-	float: left;
-	position: relative;
-	padding-left: 5px;
-	margin: 1px;
-}
+*/
 
 /*HAMBURGER STYLE CSS
 
@@ -151,6 +137,7 @@ body {
   box-sizing: border-box;
 }
  */
+ /*------HAMBURGER STYLE CSS ------*//
 #sidebar> ul {
 	margin: 10px;
 	padding: 10px;
@@ -183,6 +170,27 @@ body {
 a:hover, a:active {
     background-color: red;
 }
+/*---------HAMBURGER-----------*/
+.toggle{
+	position: fixed;
+	left: 10px; 
+	top: 5px; 
+	width:30px; 
+	height:30px;
+}
+
+#sidebar{
+	position: fixed; 
+	display: inline-block; 
+	top: 35px; 
+	height: 100%; 
+	width: 200px; 
+	left: -200px; 
+	background-color: black; 
+	transition: all 0.5s ease-in-out;
+}
+
+/*---------SOURCE MAGAZINES--------*/
 
 .source_element{ /* odwołuje sie do całego boxa w source z każdym elementem w nim zawartym*/)
 	text-decoration: underline;
@@ -220,6 +228,7 @@ a:hover, a:active {
 	 letter-spacing: 1px;
 
 }
+/*-----FOOTER -----*/
 .footersy{
 	position: fixed;
 	text-align: center;
@@ -251,18 +260,22 @@ a:hover, a:active {
 	text-align:center;
 	font-family:arial, helvetica, sans-serif;
 	line-height:1;
+	overflow: visible;
 }
 
-#navmenu{
+/*---------MENU GÓRNE --------*/
+#navmenu, #listnav, #sourcenav, #articlenav, #settingnav{
 	background: #B2094E;
 	text-align: center;
+	height: 40px;
+
 }
 
 /*#navmenu h1{
 	color: white;
 	letter-spacing: 3px;
 } */
-#navmenu h1{
+#navmenu, #listnav, #sourcenav, #articlenav, #settingnav h1{
 	font-weight:normal;
 	font-style:italic;
 	font-variant:small-caps;
@@ -275,21 +288,51 @@ a:hover, a:active {
 	line-height:1;
 }
 
-.toggle{
-	position: fixed;
-	left: 10px; 
-	top: 5px; 
-	width:30px; 
-	height:30px;
+
+/*-----------BUTTONS MAIN PAGES -----------*/
+
+.ui-block-e{
+	padding: 2px;
 }
 
-#sidebar{
-	position: fixed; 
-	display: inline-block; 
-	top: 35px; 
-	height: 100%; 
-	width: 200px; 
-	left: -200px; 
-	background-color: black; 
-	transition: all 0.5s ease-in-out;
+.button
+  {
+	-moz-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	box-shadow:inset 0px 1px 0px 0px #d9fbbe;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b8e356), color-stop(1, #a5cc52));
+	background:-moz-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:-webkit-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:-o-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:-ms-linear-gradient(top, #b8e356 5%, #a5cc52 100%);
+	background:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356', endColorstr='#a5cc52',GradientType=0);
+	background-color:#b8e356;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	border:1px solid #83c41a;
+	display:block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:15px 120px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #86ae47;
+	overflow: visible;
+}
+/*.button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a5cc52), color-stop(1, #b8e356));
+	background:-moz-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:-webkit-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:-o-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:-ms-linear-gradient(top, #a5cc52 5%, #b8e356 100%);
+	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5cc52', endColorstr='#b8e356',GradientType=0);
+	background-color:#a5cc52;
+}
+.button:active {
+	position:relative;
+	top:1px;
 }

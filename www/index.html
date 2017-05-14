@@ -28,29 +28,30 @@
             <div class="container">
                 <div data-role="content" class="main_content">
                     <div class="ui-block-e">
+                   
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
-                        <img src="img/creativeman.jpeg" width="320" height="200" />
-                        <input type="button" name="source" id="lists_button" value="Lists" />
+                        <img src="img/creativeman.jpeg" width="320" height="200" /> 
+                         <a href='#' class='button' name="source" id="lists_button" value="Lists" >Lists</a>
                     </div>
                     <div class="ui-block-e">
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
                         <img src="img/pexels.jpeg" width="320" height="200" />
-                        <input type="button" name="source" id="favourites_button" value="Favourites" />
+                         <a href='#' class='button' name="source" id="favourites_button" value="Favourites">Favourites </a>
                     </div>
                     <div class="ui-block-e">
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
                         <img src="img/saved.JPG" width="320" height="200" />
-                        <input type="button" name="source" id="saved_articles_button" value="Saved Articles" />
+                         <a href='#' class='button' name="source" id="saved_articles_button" value="Saved Articles">Your Paper </a>
                     </div>
                     <div class="ui-block-e">
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
                         <img src="img/source.jpg" width="320" height="200" />
-                        <input type="button" name="source" id="sources_button" value="Sources" />
+                       <a href='#' class='button' name="source" id="sources_button" value="Sources">Sources </a>
                     </div>
                     <div class="ui-block-e">
                         <!-- <a href="#" class="ui-btn ui-corner-all ui-shadow">Fifth Column</a> -->
                         <img src="img/settings.jpeg" width="320" height="200" />
-                        <input type="button" name="source" id="settings_button" value="Settings" />
+                        <a href='#' class='button' name="source" id="settings_button" value="Settings">Settings </a>
                     </div>
                 </div>
             </div>
@@ -62,13 +63,13 @@
 
             <div id="footerwrap" data-role="footer">
 
-                <h4>App created by A.Ślizowska & P.Gołpyś - Copyright 2017</h4>
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
             </div>
         </div>
 
         <!-- --------------------------| LISTS PAGE |----------------------------- -->
         <div data-role="page" id="lists">
-            <div data-role="header">
+            <div id="listnav" data-role="header">
                 <h1 class="page_title">Your lists</h1>
                 <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Add</a>
             </div>
@@ -87,11 +88,16 @@
                     </div>
                 </form>
             </div>
+
+            <div id="footerwrap" data-role="footer">
+
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
+            </div>
         </div>
 
         <!-- --------------------------| SOURCES PAGE |----------------------------- -->
         <div data-role="page" data-list-id='all' data-categories='all' id="sources">
-            <div data-role="header">
+            <div id="sourcenav" data-role="header">
                 <h1 class="page_title">Sources</h1>
                 <a href="#categories_popup" data-rel="popup" id="categories_button" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Categories</a>
 
@@ -128,21 +134,30 @@
                     </div>
                 </div>
             </div>
+
+            <div id="footerwrap" data-role="footer">
+
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
+            </div>
         </div>
 
         <!-- --------------------------| ARTICLES PAGE |----------------------------- -->
         <div data-role="page" data-articles='all' id="articles">
-            <div data-role="header">
+            <div id="articlenav" data-role="header">
                 <h1 class="page_title">Articles</h1>
             </div>
             <div data-role="content" class="articles_content">
                 <ul data-role="listview" data-split-icon="gear" data-inset="true" id="articles_listview"></ul>
             </div>
+            <div id="footerwrap" data-role="footer">
+
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
+            </div>
         </div>
 
         <!-- --------------------------| SETTINGS PAGE |----------------------------- -->
         <div data-role="page" id="settings">
-            <div data-role="header">
+            <div id="settingnav" data-role="header">
                 <h1 class="settings">Your settings</h1>
             </div>
 
@@ -164,7 +179,10 @@
                 </select>
                 <button type="submit" id="save_settings" value="save_settings" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
             </div>
+            <div id="footerwrap" data-role="footer">
 
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
+            </div>
         </div>
 
         <!-- --------------------------| HAMBURGER MENU |----------------------------- -->
