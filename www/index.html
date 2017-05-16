@@ -56,6 +56,7 @@
                 </div>
             </div>
 
+
             <!-- <div data-role="footer">
                 <h1>App created by A.Ślizowska & P.Gołpyś</h1>
             </div> -->
@@ -65,13 +66,14 @@
 
                 <h4>App created by A.Ślizowska & P.Gołpyś</h4>
             </div>
-        </div>
+            </div>
+
 
         <!-- --------------------------| LISTS PAGE |----------------------------- -->
         <div data-role="page" id="lists">
             <div id="listnav" data-role="header">
                 <h1 class="page_title">Your lists</h1>
-                <a href="#add_list_popup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Add</a>
+                <a href="#add_list_popup"  class="ui-btn-right" data-rel="popup" data-transition="pop">Add</a>
             </div>
 
             <div data-role="content" class="lists_content">
@@ -89,7 +91,7 @@
                 </form>
             </div>
 
-            <div id="footerwrap" data-role="footer">
+            <div id="footerwrap2" data-role="footer">
 
                 <h4>App created by A.Ślizowska & P.Gołpyś</h4>
             </div>
@@ -99,9 +101,9 @@
         <div data-role="page" data-list-id='all' data-categories='all' id="sources">
             <div id="sourcenav" data-role="header">
                 <h1 class="page_title">Sources</h1>
-                <a href="#categories_popup" data-rel="popup" id="categories_button" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-right ui-btn-a" data-transition="pop">Categories</a>
+                <a href="#categories_popup" data-rel="popup" id="categories_button" class="ui-btn-right" data-transition="pop">Categories</a>
 
-                <div data-role="popup" id="categories_popup" data-theme="a" class="ui-corner-all">
+                <div data-role="popup" id="categories_popup" data-theme="b" class="ui-corner-all">
                     <div style="padding:10px 20px;">
                         <h2>Choose category</h2>
                         <ul id="categories_listview" data-role="listview" data-inset="true" data-icon="false">
@@ -123,6 +125,10 @@
                 <ul data-role="listview" data-inset="true" id="sources_listview"></ul>
             </div>
 
+            <div id="footerwrap" data-role="footer">
+
+                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
+            </div>
             <div data-role="popup" id="add_to_list" class="ui-content" style="max-width:340px; padding-bottom:2em;">
                 <div style="padding:10px 20px;">
                     <h3>Pick list</h3>
@@ -133,12 +139,10 @@
                         <p>Saved</p>
                     </div>
                 </div>
+                 
             </div>
 
-            <div id="footerwrap" data-role="footer">
-
-                <h4>App created by A.Ślizowska & P.Gołpyś</h4>
-            </div>
+           
         </div>
 
         <!-- --------------------------| ARTICLES PAGE |----------------------------- -->
@@ -149,7 +153,7 @@
             <div data-role="content" class="articles_content">
                 <ul data-role="listview" data-split-icon="gear" data-inset="true" id="articles_listview"></ul>
             </div>
-            <div id="footerwrap" data-role="footer">
+            <div id="footerwrap2" data-role="footer">
 
                 <h4>App created by A.Ślizowska & P.Gołpyś</h4>
             </div>
@@ -179,36 +183,31 @@
                 </select>
                 <button type="submit" id="save_settings" value="save_settings" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
             </div>
-            <div id="footerwrap" data-role="footer">
+            <div id="footerwrap2" data-role="footer">
 
                 <h4>App created by A.Ślizowska & P.Gołpyś</h4>
             </div>
         </div>
 
-        <!-- --------------------------| HAMBURGER MENU |----------------------------- -->
-        <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()" style="position: fixed; left: 10px; top: 5px" />
-        <div id="sidebar" style="position: fixed; display: inline-block; top: 35px; height: 100%; width: 200px; left: -200px; background-color: black; transition: all 0.5s ease-in-out;">
-            <ul>
-                <li id="lists_hamburger">
-                    <a href="#">Lists</a>
-                </li>
-                <li id="favourites_hamburger">
-                    <a href="#">Favourites</a>
-                </li>
-                <li id="saved_articles_hamburger">
-                    <a href="#">Saved Articles </a>
-                </li>
-                <li id="sources_hamburger">
-                    <a href="#">Sources</a>
-                </li>
-                <li id="settings_hamburger">
-                    <a href="#">Settings</a>
-                </li>
-            </ul>
-        </div>
-
+        <!-- --------------------------| HAMBURGER MENU |---------------------------->
+        <div data-role="panel" data-display="push" data-position="overlay" data-theme="b" id="nav-panel">
+        <!--Nie wiem czemu nie można przesunąć i zamknąć hamburgera-->
+        
+        <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()"/>
+        <div id="sidebar" >
+            <ul data-role="listview">
+                <li data-icon="delete"><a href="#" class="siderbutton" data-rel="close">Close menu</a></li>
+                <li id="lists_hamburger"><a href="#" class="siderbutton">Lists</a></li>
+                <li id="favourites_hamburger"><a href="#" class="siderbutton">Favourites</a></li>
+                <li id="saved_articles_hamburger"> <a href="#" class="siderbutton">Saved Articles </a></li>
+                <li id="sources_hamburger"> <a href="#" class="siderbutton">Sources</a></li>
+                <li id="settings_hamburger"> <a href="#" class="siderbutton">Settings</a></li>
+            </ul>
+         </div><!-- /panel -->
+        </div> 
 </body>
 <script>
+
     function toggle_sidebar() {
         var sidebar = document.getElementById("sidebar");
         console.log(sidebar.style.left);

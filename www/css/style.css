@@ -66,110 +66,33 @@ body {
 		to {opacity: 0;}
 	}
 
-/*Nie wiem do czego to juz jest na razie wykomentuje, chyba zapomnialem wykasowac wczesniej
-.buttonlist{
-	background: #0087ff;
-	height: 100px;
-    width: 100px;
-	border: 2px solid rgba(33, 68, 72, 0.59);
-	color: rgba(0, 0, 0, 0.55);
-    text-align: center;
-    font: bold 0.9em/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-	
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 66.4px;
-
-    background: -webkit-linear-gradient(top, #0087ff, #01396b);
-    background: -moz-linear-gradient(top, #0087ff, #01396b);
-    background: -o-linear-gradient(top, #0087ff, #01396b);
-    background: -ms-linear-gradient(top, #0087ff, #01396b);
-    background: linear-gradient(top, #0087ff, #01396b);
- 
-    -webkit-border-radius: 50px;
-    -khtml-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
- 
-    -webkit-box-shadow: 0 8px 0 #01396b;
-    -moz-box-shadow: 0 8px 0 #01396b;
-    box-shadow: 0 8px 0 #01396b;
-}
-
-*/
-
-/*HAMBURGER STYLE CSS
-
-
-#sidebar ul {
-  position: absolute;
-  display: flex;
-  height: calc(100% - 20px);
-  flex-wrap: wrap;
-  margin: 0 10px;
-  padding: 0;
-  list-style-type: none;
-  align-content: flex-start
-}
-
-.sidebar ul li {
-  display: flex;
-  height: 30px;
-  background: #ffffff;
-  flex-basis: 100%;
-  margin-top: 20px;
-  color: #696e9e;
-  border-radius: 5px;
-  overflow: hidden;
-  
-}
-
-.sidebar ul li a {
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  text-decoration: none;
-  box-sizing: border-box;
-}
- */
  /*------HAMBURGER STYLE CSS ------*//
-#sidebar> ul {
-	margin: 10px;
-	padding: 10px;
-	text-align: justify;
-}
+
 
 #sidebar> ul> li{
-	 /*align-items: center; */
-	 height: 30px;
-	 letter-spacing: 2px;
-	 text-align: center;
-	 display: block;
-	 background: #ffffff;
-	 margin-top: 20px;
+	 height: 100%;
+	 font-size: 14px;
+	 display: inline-block;
+	 margin-top: 5px;
   	 border-radius: 5px;
-  	 overflow: hidden;
+  	 width: 100%;
 }
 
 #sidebar > ul >li >a:link, a:visited {
-    background-color: #f44336;
+    background-color: #B2094E;
+    -moz-border-radius:6px;
+	-webkit-border-radius:6px;
     color: white;
-    padding: 10px 25px;
+    padding: 10px 20px;
     text-align: center;
+    overflow: visible;
     text-decoration: none;
     display: inline-block;
     width: 100%;
+	line-height:1;
 }
 
-
-a:hover, a:active {
-    background-color: red;
-}
 /*---------HAMBURGER-----------*/
 .toggle{
 	position: fixed;
@@ -181,8 +104,7 @@ a:hover, a:active {
 
 #sidebar{
 	position: fixed; 
-	display: inline-block; 
-	top: 35px; 
+	top: 38px; 
 	height: 100%; 
 	width: 200px; 
 	left: -200px; 
@@ -196,7 +118,15 @@ a:hover, a:active {
 	text-decoration: underline;
 	float: left;
 	display: block;
-	width: 50%;
+	width: 100%;
+
+	border-radius:7px;
+	border:1px solid #83c41a;
+	display:block;
+	cursor:pointer;
+	overflow: hidden;
+
+
 }
 
 .source_name{
@@ -229,27 +159,31 @@ a:hover, a:active {
 
 }
 /*-----FOOTER -----*/
-.footersy{
-	position: fixed;
-	text-align: center;
-	font-family: Arial, Helvetica, Verdana, sans-serif;
-	font-size: small;
-	bottom:0;
-	width:100%;
-	height:30px;		/* Wysokość stopki */
-	background:#b5fbbd;
-}
-
 #footerwrap {
 	position: relative;
 	bottom:0;
+	clear: both;
 	background: #B2094E;
 	margin-top: 5px;
+
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-align: center;
+	width: 100%;
 }
-#footerwrap h4 {
+#footerwrap2{
+	position: absolute;
+	bottom: 0;
+	clear: both;
+	background: #B2094E;
+	margin-top: 5px;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+#footerwrap, #footerwrap2 h4 {
 	font-weight:normal;
 	font-style:italic;
 	font-variant:small-caps;
@@ -335,4 +269,46 @@ a:hover, a:active {
 .button:active {
 	position:relative;
 	top:1px;
+}*/
+
+.ui-btn-right {
+	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	-webkit-boxui-btn-rightshadow:inset 0px 1px 0px 0px #bbdaf7;
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
+	background:-moz-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-webkit-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-o-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-ms-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5',GradientType=0);
+	background-color:#79bbff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	cursor:pointer;
+	font-family:arial, helvetica, sans-serif;
+	font-size:19px;
+	padding:8px 16px;
+	
+}
+.ui-btn-right:hover{
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+	background:-moz-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-webkit-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-o-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-ms-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);
+	background-color:#378de5;
+}
+.ui-btn-right:active{
+	position:absolute;
+	top:1px;
+}
+
+/*SOURCE ELEMENTS CSS*/
+.ui-corner-all{
+	background-color:#378de5;
 }
