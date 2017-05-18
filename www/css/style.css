@@ -7,8 +7,8 @@ body {
 
 /*------SPLASH SCREEN ------*/
 	.preload {
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
 	background: #333;
 	position: fixed;
 	top: 0;
@@ -95,7 +95,7 @@ body {
 
 /*---------HAMBURGER-----------*/
 .toggle{
-	position: fixed;
+	position: absolute;
 	left: 10px; 
 	top: 5px; 
 	width:30px; 
@@ -112,6 +112,57 @@ body {
 	transition: all 0.5s ease-in-out;
 }
 
+
+
+.hamburger{
+  background:none;
+  position:absolute;
+  top:0;
+  right:0;
+  line-height:45px;
+  padding:5px 15px 0px 15px;
+  color:#999;
+  border:0;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:10000000000000;
+}
+.cross{
+  background:none;
+  position:absolute;
+  top:0px;
+  right:0;
+  padding:7px 15px 0px 15px;
+  color:#999;
+  border:0;
+  font-size:3em;
+  line-height:65px;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:10000000000000;
+}
+.menu{z-index:1000000; font-weight:bold; font-size:0.8em; width:100%; background:#f1f1f1;  position:absolute; text-align:center; font-size:12px;}
+.menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
+.menu li {display: block;   padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+.menu li:hover{display: block;    background:#ffffff; padding:15px 0 15px 0; border-bottom:#dddddd 1px solid;}
+.menu ul li a { text-decoration:none;  margin: 0px; color:#666;}
+.menu ul li a:hover {  color: #666; text-decoration:none;}
+.menu a{text-decoration:none; color:#666;}
+.menu a:hover{text-decoration:none; color:#666;}
+
+.glyphicon-home{
+  color:white; 
+  font-size:1.5em; 
+  margin-top:5px; 
+  margin:0 auto;
+}
+
+span{padding-left:20px;}
+a{color:#336699;}
+
 /*---------SOURCE MAGAZINES--------*/
 
 .source_element{ /* odwołuje sie do całego boxa w source z każdym elementem w nim zawartym*/)
@@ -122,7 +173,6 @@ body {
 
 	border-radius:7px;
 	border:1px solid #83c41a;
-	display:block;
 	cursor:pointer;
 	overflow: hidden;
 
@@ -204,7 +254,6 @@ body {
 	height: 40px;
 
 }
-
 /*#navmenu h1{
 	color: white;
 	letter-spacing: 3px;
@@ -291,6 +340,7 @@ body {
 	font-family:arial, helvetica, sans-serif;
 	font-size:19px;
 	padding:8px 16px;
+	color: white;
 	
 }
 .ui-btn-right:hover{
@@ -312,3 +362,28 @@ body {
 .ui-corner-all{
 	background-color:#378de5;
 }
+
+
+/*ARTICLES ELEMENTS*/
+.article_element{
+	width: 100%;
+}
+.img_url{
+	border-radius:6px;
+}
+.article_url, .img_url{
+	margin: 10px;
+	float: left;
+	text-decoration: underline;
+	float: left;
+	display: block;
+	width: 100%;
+}
+.article_title, .article_author, .article_description {
+	text-align: center;
+}
+.article_published_at,.published_at{
+	text-align: center;
+	
+}
+

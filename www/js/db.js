@@ -202,6 +202,9 @@ function saveSettings(settings) {
         }
         store.put(settings);
     }
+    //TODO
+    //tutaj mozna popupa jakiegos wstawic, np appendem.
+    console.log("saved");
 }
 
 function loadSettings() {
@@ -217,6 +220,7 @@ function loadSettings() {
         }
         $("#select_language").val(settings.language).selectmenu('refresh');
         $("#" + settings.theme + "_theme").attr("checked", true).checkboxradio("refresh");
+        $("#settingnav").css("background-color",settings.theme)
     }
 }
 
@@ -230,7 +234,6 @@ function loadAllSources(categoryId) {
         loadAllSourcesAjax(language, categoryId)
     }
 }
-
 function openDB() {
     var openRequest = window.indexedDB.open("TheNewsDB", 2);
 
@@ -261,4 +264,5 @@ function openDB() {
     openRequest.onerror = function (e) {
         console.log("TheNewsDB can't be opened");
     }
+
 }

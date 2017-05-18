@@ -25,8 +25,8 @@ function buildArticleHtml(element, whichArticles) {
     var elementHtml = '<li class="article_element" id="' + element.id + '"><a href="' + element.url + '" class="article_url" rel="external">' +
         '<div> ' +
         '<img class="img_url" src="' + element.urlToImage + '" alt="' + element.title + '" style="width:200px;height:200px;">' +
-        '<h3 class="article_title">' + element.title + '</h3>' +
-        '<h4 class="article_author"><p>Author: </p><p><strong>' + element.author + '</strong></p></h4>' +
+        '<h2 class="article_title">' + element.title + '</h2>' +
+        '<h3 class="article_author"><p>Author: </p><p><strong>' + element.author + '</strong></p></h3>' +
         '<p class="article_description">' + element.description + '</p>' +
         '<span><p class="article_published_at">Published at </p> ' +
         '<p class="published_at">' + element.publishedAt + '</p></span></div>';
@@ -40,7 +40,7 @@ function buildArticleHtml(element, whichArticles) {
 
 function addToListsListView(listViewId, object) {
     if (listViewId == 'lists_listview') {
-        $("#" + listViewId).append('<li id="' + object.id + '" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-btn-up-c"><a href="#" class="ui-btn list_item">' + object.name + '</a><a href="#"  class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a" title="delete"></a></li>');
+        $("#" + listViewId).append('<li id="' + object.id + '" class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-btn-up-c"><a href="#" class="ui-btn list_item">' + object.name + '</a><a href="#"  class="ui-btn ui-btn-icon-notext ui-icon-delete ui-btn-a" title="delete"></a></li>');        
     } else {
         $("#" + listViewId).append('<li id="' + object.id + '"><a href="#">' + object.name + '</a></li>');
     }
@@ -83,3 +83,30 @@ function validateListName(listName) {
     }
     return true;
 }
+
+
+// $( "#add_list_popup" ).click(function() {
+//   $( "#save_new_list" ).hide( "save", function() {
+//     alert( "Animation complete." );
+//   });
+// });
+
+
+
+
+
+$( ".cross" ).hide();
+$( ".menu" ).hide();
+$( ".hamburger" ).click(function() {
+$( ".menu" ).slideToggle( "slow", function() {
+$( ".hamburger" ).hide();
+$( ".cross" ).show();
+});
+});
+
+$( ".cross" ).click(function() {
+$( ".menu" ).slideToggle( "slow", function() {
+$( ".cross" ).hide();
+$( ".hamburger" ).show();
+});
+});

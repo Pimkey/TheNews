@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <div class="container">
 
         <!-- --------------------------| MAIN PAGE |----------------------------- -->
@@ -73,7 +74,7 @@
         <div data-role="page" id="lists">
             <div id="listnav" data-role="header">
                 <h1 class="page_title">Your lists</h1>
-                <a href="#add_list_popup"  class="ui-btn-right" data-rel="popup" data-transition="pop">Add</a>
+                <a href="#add_list_popup"  class="ui-btn-right" data-rel="popup" data-transition="pop" >Add</a>
             </div>
 
             <div data-role="content" class="lists_content">
@@ -82,11 +83,12 @@
 
             <div data-role="popup" id="add_list_popup" data-theme="a" class="ui-corner-all">
                 <form>
-                    <div style="padding:10px 20px;">
+                    <div style="padding:10px 20px; color:white;font-family:arial, helvetica, sans-serif; text-align:center;">
                         <h2>Enter list name:</h2>
                         <input type="text" name="list_name_textbox" id="list_name_textbox" value="" data-theme="a">
-                        <p hidden style="color:red" id="list_validation_text">Cannot be empty</p>
+                        <p hidden style="color:white; text-align:center;" id="list_validation_text">Cannot be empty</p>
                         <button type="submit" id="save_new_list" value="list_name_textbox" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Save</button>
+                        <a href="self.close()"><button type="button"  class="ui-btn ui-icon-delete ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left"data-dismiss="modal">zamknij okienko</button></a>
                     </div>
                 </form>
             </div>
@@ -168,11 +170,11 @@
             <div data-role="content" class="settings_content">
                 <fieldset data-role="controlgroup">
                     <legend>Choose colour theme</legend>
-                    <input type="radio" name="red_theme" id="red_theme" value="red" class="theme_radio">
+                    <input type="radio" name="theme" id="red_theme" value="red" class="theme_radio">
                     <label for="red_theme">Red</label>
-                    <input type="radio" name="blue_theme" id="blue_theme" value="blue" class="theme_radio">
+                    <input type="radio" name="theme" id="blue_theme" value="blue" class="theme_radio">
                     <label for="blue_theme">Blue</label>
-                    <input type="radio" name="green_theme" id="green_theme" value="green" class="theme_radio">
+                    <input type="radio" name="theme" id="green_theme" value="green" class="theme_radio">
                     <label for="green_theme">Green</label>
                 </fieldset>
                 <label for="select-choice-mini" class="select">Choose language of sources</label>
@@ -193,7 +195,7 @@
         <div data-role="panel" data-display="push" data-position="overlay" data-theme="b" id="nav-panel">
         <!--Nie wiem czemu nie można przesunąć i zamknąć hamburgera-->
         
-        <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()"/>
+       <!-- <img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()"/>
         <div id="sidebar" >
             <ul data-role="listview">
                 <li data-icon="delete"><a href="#" class="siderbutton" data-rel="close">Close menu</a></li>
@@ -204,7 +206,22 @@
                 <li id="settings_hamburger"> <a href="#" class="siderbutton">Settings</a></li>
             </ul>
          </div><!-- /panel -->
-        </div> 
+<!--        </div> -->
+
+
+<img class="toggle" src="img/icon-hamburger.png" onclick="toggle_sidebar()"/>
+       
+       <div id="sidebar" >
+        <div class="menu">
+  <ul>
+    <a href="#"><li id="lists_hamburger">Lists</li></a>
+    <a href="#"><li id="favourites_hamburger">Favourites</li></a>
+    <a href="#"><li id="saved_articles_hamburger">Saved Articles</li></a>
+    <a href="#"><li id="sources_hamburger">Sources</li></a>
+    <a href="#"><li id="settings_hamburger">Settings</li></a>
+  </ul>
+</div> 
+</div>
 </body>
 <script>
 

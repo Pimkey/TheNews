@@ -69,6 +69,7 @@ $(document).ready(function () {
                 $(this).removeAttr('data-list-id');
             }
         }
+        $("#add_list_popup").popup('close');
     });
 
     $("#lists").on('click', '#lists_listview li a.ui-icon-delete', function () {
@@ -180,6 +181,7 @@ $(document).ready(function () {
             icon: "check"
         });
         loadAllSources(categoryId);
+        $('#categories_popup').popup('close');
         $("#sources").data('categories', categoryId)
         $("categories_listview").listview('refresh');
     })

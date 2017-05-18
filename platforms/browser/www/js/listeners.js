@@ -1,7 +1,7 @@
 var params = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-    openDB()
+    openDB();
 }, false);
 
 $(document).ready(function () {
