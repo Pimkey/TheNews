@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{REQUEST_splash.html} !-f
+RewriteCond %{REQUEST_splash.html} !-d
+RewriteRule ^(.*)$ /www/splash.html?path=$1 [NC,L,QSA]
