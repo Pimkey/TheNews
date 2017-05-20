@@ -22,7 +22,7 @@ First at all you need your QR code reader to get install this app. Then after th
 
 ## Built With
 - Phonegap
-- javascript
+- javascript, jQyery, jQuery mobile
 - Apache cordova
 - ajax
 - html/css
