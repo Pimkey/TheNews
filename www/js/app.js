@@ -1,8 +1,8 @@
 function buildSourceHtml(element, listId) {
     var elementHtml = '<li class="source_element" id="' + element.id + '"><a class="source_url" href="#">' +
         '<div>' +
-        '<h3 class="source_name">' + element.name + '</h3>' +
-        '<span><h4 class="source_category">Category: </h4><h4 class="source_category">' + element.category + '</h4></span>' +
+        '<h1 class="source_name">' + element.name + '</h1>' +
+        '<span><h2 class="source_category">Category: </h2><h2 class="source_category">' + element.category + '</h2></span>' +
         '<p class="source_description">' + element.description + '</p>' +
         '<div class="source_locale">' +
         '<span><p class="source_country">Country: </p><p class="source_country"><strong>' + element.country + '</strong></p></span>' +
@@ -24,7 +24,7 @@ function buildSourceHtml(element, listId) {
 function buildArticleHtml(element, whichArticles) {
     var elementHtml = '<li class="article_element" id="' + element.id + '"><a href="' + element.url + '" class="article_url" rel="external">' +
         '<div> ' +
-        '<img class="img_url" src="' + element.urlToImage + '" alt="' + element.title + '" style="width:200px;height:200px;">' +
+        '<img class="img_url" src="' + element.urlToImage + '" alt="' + element.title + '" >' +
         '<h2 class="article_title">' + element.title + '</h2>' +
         '<h3 class="article_author"><p>Author: </p><p><strong>' + element.author + '</strong></p></h3>' +
         '<p class="article_description">' + element.description + '</p>' +
@@ -84,29 +84,3 @@ function validateListName(listName) {
     return true;
 }
 
-
-// $( "#add_list_popup" ).click(function() {
-//   $( "#save_new_list" ).hide( "save", function() {
-//     alert( "Animation complete." );
-//   });
-// });
-
-
-
-
-
-$( ".cross" ).hide();
-$( ".menu" ).hide();
-$( ".hamburger" ).click(function() {
-$( ".menu" ).slideToggle( "slow", function() {
-$( ".hamburger" ).hide();
-$( ".cross" ).show();
-});
-});
-
-$( ".cross" ).click(function() {
-$( ".menu" ).slideToggle( "slow", function() {
-$( ".cross" ).hide();
-$( ".hamburger" ).show();
-});
-});

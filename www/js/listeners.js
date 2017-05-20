@@ -1,7 +1,8 @@
 var params = [];
 
 document.addEventListener("DOMContentLoaded", function () {
-    openDB()
+    openDB();
+    loadSettings();
 }, false);
 
 $(document).ready(function () {
@@ -210,7 +211,12 @@ $(document).ready(function () {
         settings.id = 1;
         settings.language = $("#select_language").val();
         settings.theme = $("input[class=theme_radio]:checked").val();
+        changeColors(settings.theme);
         saveSettings(settings);
+    });
+    $("input[type=radio]").change(function(){
+        color = $(this).val();
+        changeColors(color);
     });
 
 });
